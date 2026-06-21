@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALISHZAY | Luxury Eastern Wear</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght=0,300;0,400;0,600;1,400&family=Montserrat:wght=200;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .font-sans { font-family: 'Montserrat', sans-serif; }
+        
+        /* Smooth fade transition for the carousel */
+        .carousel-img {
+            transition: opacity 1s ease-in-out;
+        }
+
+        /* Premium Social Media Icons with Soft Glowing Light Background */
+        .social-glow-circle {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px; /* Rounded square shapes */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #FDFBF7;
+            border: 1px solid #E6DFD3;
+            color: #4E2A45;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 12px rgba(230, 223, 211, 0.6);
+        }
+
+        .social-glow-circle:hover {
+            transform: translateY(-4px);
+            border-color: #D4AF37;
+            color: #D4AF37;
+            box-shadow: 0 0 20px rgba(229, 213, 203, 1), inset 0 0 8px rgba(229, 213, 203, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-[#FDFBF7] text-[#4E2A45] font-sans antialiased">
+
+    <!-- Announcement Bar -->
+    <div class="bg-[#E6DFD3] text-[#4E2A45] text-xs tracking-widest uppercase py-2.5 text-center font-semibold border-b border-[#D4AF37]">
+        Free Delivery Across Pakistan | Worldwide Shipping Available
+    </div>
+
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-50 bg-[#FDFBF7]/90 backdrop-blur-md border-b border-[#E6DFD3]">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between relative">
+            
+            <!-- Left: Logo Emblem & Interactive Menu/Search Controls -->
+            <div class="flex items-center space-x-6 z-10">
+                <button onclick="showPage('home')" class="focus:outline-none transition transform hover:scale-105 duration-300 flex items-center">
+                    <img src="Logo.jpeg" alt="ALISHZAY Emblem" class="h-16 w-auto object-contain mix-blend-multiply">
+                </button>
+                
+                <!-- Horizontally Aligned Menu & Magnifying Glass Buttons -->
+                <div class="flex items-center space-x-5 text-[#704264]">
+                    <!-- 3 Horizontally Aligned Lines (Menu) Button -->
+                    <button onclick="toggleSideMenu()" class="hover:text-[#4E2A45] transition duration-300 focus:outline-none text-base" aria-label="Menu">
+                        <i class="fa-solid fa-bars-staggered"></i>
+                    </button>
+                    <!-- Search Button (Magnifying Glass) -->
+                    <button onclick="toggleSearchModal()" class="hover:text-[#4E2A45] transition duration-300 focus:outline-none text-base" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Center: Brand Logo Text -->
+            <div class="text-center absolute left-1/2 transform -translate-x-1/2 hidden sm:block">
+                <button onclick="showPage('home')" class="font-serif text-3xl tracking-[0.25em] uppercase font-semibold text-[#4E2A45] block">ALISHZAY</button>
+                <span class="block text-[9px] tracking-[0.4em] uppercase text-[#D4AF37] font-medium mt-0.5">Luxury Pret & Couture</span>
+            </div>
+
+            <!-- Right: Concierge Link -->
+            <div class="flex items-center space-x-6 text-sm tracking-widest uppercase font-medium z-10">
+                <a href="https://wa.me/923003994023?text=Hello%20ALISHZAY%20Boutique.%20I%20need%20assistance." target="_blank" class="text-xs text-[#704264] hover:text-[#4E2A45] transition flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+                    Contact Boutique
+                </a>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- ==================== PREMIUM OVERLAY SIDEBAR NAVIGATION ==================== -->
+    <div id="side-menu-overlay" class="fixed inset-0 z-[110] bg-black/40 backdrop-blur-xs transition-opacity duration-500 opacity-0 pointer-events-none" onclick="toggleSideMenu()"></div>
+    <div id="side-menu" class="fixed top-0 left-0 bottom-0 w-80 max-w-[85vw] bg-[#FDFBF7] z-[120] border-r border-[#E6DFD3] shadow-2xl p-8 flex flex-col justify-between transform -translate-x-full transition-transform duration-500 ease-out">
+        <div>
+            <!-- Close Header -->
+            <div class="flex justify-between items-center mb-10">
+                <span class="font-serif text-xl tracking-widest uppercase font-semibold text-[#4E2A45]">Navigation</span>
+                <button onclick="toggleSideMenu()" class="text-2xl font-light text-[#704264] hover:text-[#4E2A45] focus:outline-none">&times;</button>
+            </div>
+            <!-- Links Stack -->
+            <nav class="flex flex-col space-y-[1.35rem] text-xs tracking-[0.2em] uppercase font-medium text-[#704264]">
+                <button onclick="showPage('home'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">Home</button>
+                <button onclick="showPage('pret'); filterCategory('all'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">Ready To Wear</button>
+                <button onclick="showPage('pret'); filterCategory('lawn'); toggleSideMenu();" class="text-left pl-4 hover:text-[#4E2A45] transition text-[11px] text-[#704264]/80">- Lawn</button>
+                <button onclick="showPage('pret'); filterCategory('cambric'); toggleSideMenu();" class="text-left pl-4 hover:text-[#4E2A45] transition text-[11px] text-[#704264]/80">- Cambric</button>
+                <button onclick="showPage('pret'); filterCategory('khaddar'); toggleSideMenu();" class="text-left pl-4 hover:text-[#4E2A45] transition text-[11px] text-[#704264]/80">- Khaddar</button>
+                <button onclick="showPage('atelier'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">The Atelier</button>
+                <button onclick="showPage('about'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">About Us</button>
+                <button onclick="showPage('terms'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition pt-2 border-t border-[#E6DFD3]/60 text-[11px]">Terms & Conditions</button>
+                <button onclick="showPage('privacy'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition text-[11px]">Privacy Policy</button>
+            </nav>
+        </div>
+        <div class="border-t border-[#E6DFD3] pt-6">
+            <span class="block text-[10px] tracking-[0.2em] uppercase text-[#D4AF37] font-semibold mb-1">ALISHZAY Care</span>
+            <p class="text-[11px] text-[#704264] font-light leading-relaxed">Need help tailoring? Tap Contact Boutique anytime to connect via WhatsApp.</p>
+        </div>
+    </div>
+
+
+    <!-- ==================== PREMIUM INTERACTIVE SEARCH MODAL ==================== -->
+    <div id="search-modal" class="fixed inset-0 z-[100] hidden bg-black/50 backdrop-blur-xs flex items-start justify-center pt-24 px-4" onclick="toggleSearchModal()">
+        <div class="bg-[#FDFBF7] w-full max-w-xl rounded-xl shadow-2xl p-6 border border-[#D4AF37]/30 transform scale-95 transition-transform duration-300" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-between border-b border-[#E6DFD3] pb-3 mb-4">
+                <div class="flex items-center space-x-3 w-full">
+                    <i class="fa-solid fa-magnifying-glass text-[#704264]"></i>
+                    <input type="text" id="search-input" placeholder="Search catalog (Lawn, Cambric, Khaddar...)" class="w-full bg-transparent border-none text-sm text-[#4E2A45] placeholder-[#704264]/50 focus:outline-none font-sans" oninput="executeSearch()">
+                </div>
+                <button onclick="toggleSearchModal()" class="text-xl font-light text-[#704264] hover:text-[#4E2A45] ml-2">&times;</button>
+            </div>
+            <!-- Search Live Results Pane -->
+            <div id="search-results" class="max-h-60 overflow-y-auto divide-y divide-[#E6DFD3]/40">
+                <p class="text-xs text-[#704264]/70 italic py-2">Type above to see matching lookbook curations...</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ==================== PAGE 1: HOME PAGE ==================== -->
+    <main id="page-home" class="page-content">
+        
+        <!-- Split Hero Section -->
+        <section class="relative min-h-[80vh] flex flex-col md:flex-row items-center justify-between overflow-hidden border-b border-[#E6DFD3] py-12 md:py-0">
+            <!-- Left Side: Front Banner Background -->
+            <div class="w-full md:w-1/2 relative min-h-[45vh] md:min-h-[80vh] flex items-center p-8 md:p-16 lg:p-24 bg-[#E6DFD3]">
+                <img src="Front Banner.jpeg" class="absolute inset-0 w-full h-full object-cover object-center opacity-85" alt="ALISHZAY Luxury Banner Background">
+                <div class="relative z-10 max-w-xl p-8 rounded-xl backdrop-blur-md bg-[#FDFBF7]/60 border border-[#D4AF37]/20 shadow-sm">
+                    <h1 class="font-serif text-3xl md:text-4xl lg:text-5xl font-light tracking-wide text-[#4E2A45] mb-6 leading-tight">
+                        Our Story <span class="text-[#704264] italic">Begins!</span>
+                    </h1>
+                    <p class="text-xs md:text-[13px] text-[#4E2A45] font-sans font-normal tracking-wide leading-relaxed border-t border-[#4E2A45]/20 pt-6">
+                        At our clothing brand, we believe fashion is more than just clothing—it's a way to express confidence, personality, and style. We create high-quality, comfortable, and trendy apparel designed for everyday wear. Our mission is to provide stylish fashion that combines modern designs, premium fabrics, and lasting comfort, helping our customers look and feel their best wherever they go.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Side: Rectangular Carousel Frame -->
+            <div class="w-full md:w-1/2 flex items-center justify-center p-6 md:p-12 lg:p-16">
+                <div class="relative w-full max-w-[420px] aspect-[3/4] h-[50vh] md:h-[60vh] rounded-2xl overflow-hidden shadow-xl border border-[#D4AF37]/20 bg-[#E6DFD3]/40">
+                    <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=1000&auto=format&fit=crop" class="carousel-img absolute inset-0 w-full h-full object-cover object-center opacity-100">
+                    <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=1000&auto=format&fit=crop" class="carousel-img absolute inset-0 w-full h-full object-cover object-center opacity-0">
+                    <img src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=1000&auto=format&fit=crop" class="carousel-img absolute inset-0 w-full h-full object-cover object-center opacity-0">
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="py-20 px-6 max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="font-serif text-4xl font-light tracking-wide text-[#4E2A45]">Ready To Wear</h2>
+                <div class="w-12 h-[1px] bg-[#D4AF37] mx-auto mt-3"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <!-- Lawn Box -->
+                <button onclick="showPage('pret'); filterCategory('lawn');" class="group bg-[#E6DFD3] hover:bg-[#4E2A45] border border-[#D4AF37]/30 aspect-square rounded-xl p-8 flex flex-col justify-between items-center text-center transition-all duration-500 shadow-sm hover:shadow-md">
+                    <div class="w-full flex justify-end"><span class="text-[10px] tracking-widest text-[#704264] group-hover:text-[#E5C453] font-light">COLLECTION</span></div>
+                    <div>
+                        <h3 class="font-serif text-3xl tracking-wide text-[#4E2A45] group-hover:text-[#FDFBF7] transition">Lawn</h3>
+                        <span class="block text-[10px] tracking-[0.2em] uppercase text-[#704264] group-hover:text-[#E6DFD3] font-light mt-2">Premium Summer Edit</span>
+                    </div>
+                    <span class="text-xs uppercase tracking-widest font-medium text-[#4E2A45] group-hover:text-[#FDFBF7] border-b border-[#4E2A45]/20 group-hover:border-[#FDFBF7] pb-1 transition">View Outfits</span>
+                </button>
+
+                <!-- Cambric Box -->
+                <button onclick="showPage('pret'); filterCategory('cambric');" class="group bg-[#E6DFD3] hover:bg-[#4E2A45] border border-[#D4AF37]/30 aspect-square rounded-xl p-8 flex flex-col justify-between items-center text-center transition-all duration-500 shadow-sm hover:shadow-md">
+                    <div class="w-full flex justify-end"><span class="text-[10px] tracking-widest text-[#704264] group-hover:text-[#E5C453] font-light">COLLECTION</span></div>
+                    <div>
+                        <h3 class="font-serif text-3xl tracking-wide text-[#4E2A45] group-hover:text-[#FDFBF7] transition">Cambric</h3>
+                        <span class="block text-[10px] tracking-[0.2em] uppercase text-[#704264] group-hover:text-[#E6DFD3] font-light mt-2">Midseason Staples</span>
+                    </div>
+                    <span class="text-xs uppercase tracking-widest font-medium text-[#4E2A45] group-hover:text-[#FDFBF7] border-b border-[#4E2A45]/20 group-hover:border-[#FDFBF7] pb-1 transition">View Outfits</span>
+                </button>
+
+                <!-- Khaddar Box -->
+                <button onclick="showPage('pret'); filterCategory('khaddar');" class="group bg-[#E6DFD3] hover:bg-[#4E2A45] border border-[#D4AF37]/30 aspect-square rounded-xl p-8 flex flex-col justify-between items-center text-center transition-all duration-500 shadow-sm hover:shadow-md">
+                    <div class="w-full flex justify-end"><span class="text-[10px] tracking-widest text-[#704264] group-hover:text-[#E5C453] font-light">COLLECTION</span></div>
+                    <div>
+                        <h3 class="font-serif text-3xl tracking-wide text-[#4E2A45] group-hover:text-[#FDFBF7] transition">Khaddar</h3>
+                        <span class="block text-[10px] tracking-[0.2em] uppercase text-[#704264] group-hover:text-[#E6DFD3] font-light mt-2">Winter Cozy Luxury</span>
+                    </div>
+                    <span class="text-xs uppercase tracking-widest font-medium text-[#4E2A45] group-hover:text-[#FDFBF7] border-b border-[#4E2A45]/20 group-hover:border-[#FDFBF7] pb-1 transition">View Outfits</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- ==================== PAGE 2: READY TO WEAR (PRET) ==================== -->
+    <main id="page-pret" class="page-content hidden">
+        <section class="py-12 bg-[#E6DFD3] text-center border-b border-[#D4AF37]">
+            <h1 id="pret-title" class="font-serif text-4xl font-light tracking-wide text-[#4E2A45]">Ready-To-Wear Pret</h1>
+            <p class="text-xs text-[#704264] tracking-widest uppercase mt-2 font-semibold">Effortless Everyday Luxury & Semi-Formals</p>
+            
+            <div class="mt-4 flex justify-center gap-4 text-xs font-medium uppercase tracking-widest">
+                <button onclick="filterCategory('all')" class="text-[#4E2A45] hover:opacity-70">Show All</button>
+                <span class="text-[#D4AF37]">|</span>
+                <button onclick="filterCategory('lawn')" class="text-[#704264] hover:text-[#4E2A45]">Lawn</button>
+                <span class="text-[#D4AF37]">|</span>
+                <button onclick="filterCategory('cambric')" class="text-[#704264] hover:text-[#4E2A45]">Cambric</button>
+                <span class="text-[#D4AF37]">|</span>
+                <button onclick="filterCategory('khaddar')" class="text-[#704264] hover:text-[#4E2A45]">Khaddar</button>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-6 py-16">
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-12">
+                
+                <!-- Lawn Card -->
+                <div class="group item-card cursor-pointer" data-category="lawn" onclick="openDressModal('lawn1')">
+                    <div class="overflow-hidden bg-[#704264]/5 mb-4 aspect-[3/4] border border-[#E6DFD3] relative">
+                        <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=687&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                            <span class="bg-[#FDFBF7] text-[#4E2A45] text-[10px] tracking-widest uppercase px-4 py-2 shadow-sm rounded-sm">Quick View</span>
+                        </div>
+                    </div>
+                    <div class="text-[10px] text-[#D4AF37] font-semibold tracking-widest uppercase mb-1">Lawn Collection</div>
+                    <h3 class="text-xs tracking-wider uppercase font-medium text-[#4E2A45]">Floral Printed Premium Lawn</h3>
+                    <p class="font-serif text-[#704264] mt-1 text-sm mb-3">PKR 8,500</p>
+                    <button onclick="event.stopPropagation(); openDressModal('lawn1');" class="block w-full border border-[#704264] text-[#704264] text-[10px] tracking-widest uppercase px-4 py-2 hover:bg-[#704264] hover:text-[#FDFBF7] transition duration-300 text-center font-medium">Inquire Size & Buy</button>
+                </div>
+
+                <!-- Cambric Card -->
+                <div class="group item-card cursor-pointer" data-category="cambric" onclick="openDressModal('cambric1')">
+                    <div class="overflow-hidden bg-[#704264]/5 mb-4 aspect-[3/4] border border-[#E6DFD3] relative">
+                        <img src="https://images.unsplash.com/photo-1631857455684-a54a2f03665f?q=80&w=720&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                            <span class="bg-[#FDFBF7] text-[#4E2A45] text-[10px] tracking-widest uppercase px-4 py-2 shadow-sm rounded-sm">Quick View</span>
+                        </div>
+                    </div>
+                    <div class="text-[10px] text-[#D4AF37] font-semibold tracking-widest uppercase mb-1">Cambric Collection</div>
+                    <h3 class="text-xs tracking-wider uppercase font-medium text-[#4E2A45]">Signature Sage Cambric Co-ord</h3>
+                    <p class="font-serif text-[#704264] mt-1 text-sm mb-3">PKR 9,200</p>
+                    <div class="block w-full border border-[#704264] text-[#704264] text-[10px] tracking-widest uppercase px-4 py-2 hover:bg-[#704264] hover:text-[#FDFBF7] transition duration-300 text-center font-medium">Inquire Size & Buy</div>
+                </div>
+
+                <!-- Khaddar Card -->
+                <div class="group item-card cursor-pointer" data-category="khaddar" onclick="openDressModal('khaddar1')">
+                    <div class="overflow-hidden bg-[#704264]/5 mb-4 aspect-[3/4] border border-[#E6DFD3] relative">
+                        <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                            <span class="bg-[#FDFBF7] text-[#4E2A45] text-[10px] tracking-widest uppercase px-4 py-2 shadow-sm rounded-sm">Quick View</span>
+                        </div>
+                    </div>
+                    <div class="text-[10px] text-[#D4AF37] font-semibold tracking-widest uppercase mb-1">Khaddar Collection</div>
+                    <h3 class="text-xs tracking-wider uppercase font-medium text-[#4E2A45]">Embroidery Block Loom Khaddar</h3>
+                    <p class="font-serif text-[#704264] mt-1 text-sm mb-3">PKR 9,800</p>
+                    <div class="block w-full border border-[#704264] text-[#704264] text-[10px] tracking-widest uppercase px-4 py-2 hover:bg-[#704264] hover:text-[#FDFBF7] transition duration-300 text-center font-medium">Inquire Size & Buy</div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+
+    <!-- ==================== PRODUCT DETAIL LOOKBOOK MODAL ==================== -->
+    <div id="dress-modal" class="fixed inset-0 z-[100] hidden overflow-y-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-[#FDFBF7] w-full max-w-4xl rounded-xl overflow-hidden shadow-2xl relative border border-[#D4AF37]/30 max-h-[90vh] flex flex-col md:flex-row">
+            
+            <!-- Close Button -->
+            <button onclick="closeDressModal()" class="absolute top-4 right-4 z-50 text-[#4E2A45] hover:text-[#D4AF37] text-2xl font-light focus:outline-none">&times;</button>
+            
+            <!-- Left Side: Interactive Multi-Angle Gallery -->
+            <div class="w-full md:w-1/2 bg-[#E6DFD3]/30 p-6 flex flex-col justify-between border-r border-[#E6DFD3]">
+                <!-- Large Active Image Display Frame -->
+                <div class="w-full aspect-[3/4] rounded-lg overflow-hidden border border-[#E6DFD3]">
+                    <img id="modal-active-img" src="" class="w-full h-full object-cover object-center transition-all duration-500">
+                </div>
+                <!-- Interactive Thumbs Grid -->
+                <div id="modal-thumbs-grid" class="grid grid-cols-4 gap-2 mt-4"></div>
+            </div>
+
+            <!-- Right Side: Luxury Details & Interactive Size Pickers -->
+            <div class="w-full md:w-1/2 p-8 flex flex-col justify-between overflow-y-auto max-h-[45vh] md:max-h-[90vh]">
+                <div>
+                    <span id="modal-collection-tag" class="text-[10px] text-[#D4AF37] font-semibold tracking-widest uppercase block mb-1"></span>
+                    <h2 id="modal-title" class="font-serif text-2xl lg:text-3xl font-light text-[#4E2A45] tracking-wide mb-2"></h2>
+                    <p id="modal-price" class="font-serif text-lg text-[#704264] mb-4 border-b border-[#E6DFD3] pb-4"></p>
+                    
+                    <!-- Integrated Size Header Section -->
+                    <div class="mb-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="text-[11px] tracking-widest uppercase text-[#4E2A45] font-semibold">Size</h4>
+                            <!-- Size Chart Trigger Dropdown Link Toggle Button -->
+                            <button onclick="toggleSizeChartDropdown()" class="flex items-center gap-1 text-[11px] font-medium text-[#704264] hover:text-[#4E2A45] uppercase tracking-wider transition-all">
+                                <i class="fa-solid fa-ruler-combined text-xs"></i> Size Chart
+                            </button>
+                        </div>
+                        
+                        <!-- Clean Size Box Selectors: Supports full array with Crossed-out Out-of-Stock styles (XL/XXL) -->
+                        <div class="flex flex-wrap gap-2.5" id="size-selector-container">
+                            <button onclick="selectProductSize('XS')" id="size-btn-XS" class="w-11 h-11 border border-[#704264] text-xs font-medium uppercase tracking-wider transition-all duration-300 rounded-md flex items-center justify-center text-[#704264] bg-transparent hover:border-[#4E2A45]">XS</button>
+                            <button onclick="selectProductSize('S')" id="size-btn-S" class="w-11 h-11 border border-[#704264] text-xs font-medium uppercase tracking-wider transition-all duration-300 rounded-md flex items-center justify-center text-[#704264] bg-transparent hover:border-[#4E2A45]">S</button>
+                            <button onclick="selectProductSize('M')" id="size-btn-M" class="w-11 h-11 border border-[#704264] text-xs font-medium uppercase tracking-wider transition-all duration-300 rounded-md flex items-center justify-center text-[#704264] bg-transparent hover:border-[#4E2A45]">M</button>
+                            <button onclick="selectProductSize('L')" id="size-btn-L" class="w-11 h-11 border border-[#704264] text-xs font-medium uppercase tracking-wider transition-all duration-300 rounded-md flex items-center justify-center text-[#704264] bg-transparent hover:border-[#4E2A45]">L</button>
+                            <!-- Sold Out Sizes Styled with Diagonal Line and Muted Background opacity -->
+                            <button class="w-11 h-11 border border-[#E6DFD3] text-gray-400 text-xs font-normal uppercase relative rounded-md flex items-center justify-center bg-gray-50/50 cursor-not-allowed line-through overflow-hidden" title="Out of Stock" disabled>XL</button>
+                            <button class="w-11 h-11 border border-[#E6DFD3] text-gray-400 text-xs font-normal uppercase relative rounded-md flex items-center justify-center bg-gray-50/50 cursor-not-allowed line-through overflow-hidden" title="Out of Stock" disabled>XXL</button>
+                        </div>
+
+                        <!-- Slide-Down Measurement Table UI -->
+                        <div id="size-chart-dropdown" class="hidden mt-4 border border-[#E6DFD3] bg-white rounded-lg p-3 shadow-inner overflow-x-auto transition-all duration-300">
+                            <div class="text-[10px] text-gray-400 mb-2 font-medium flex justify-between">
+                                <span class="uppercase tracking-wider font-semibold text-[#4E2A45]">Dress Measurements (Inches)</span>
+                                <span>+/- 0.5" Variation</span>
+                            </div>
+                            <table class="w-full text-center text-[11px] border-collapse">
+                                <thead>
+                                    <tr class="border-b border-[#E6DFD3] bg-[#E6DFD3]/30 font-semibold text-[#4E2A45]">
+                                        <th class="py-1.5 px-1 text-left">Size</th>
+                                        <th class="py-1.5 px-1">XS</th>
+                                        <th class="py-1.5 px-1">S</th>
+                                        <th class="py-1.5 px-1">M</th>
+                                        <th class="py-1.5 px-1">L</th>
+                                        <th class="py-1.5 px-1">XL</th>
+                                        <th class="py-1.5 px-1">XXL</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-100 text-[#704264]">
+                                    <tr><td class="py-1.5 px-1 text-left font-medium bg-gray-50">Length</td><td class="py-1.5 px-1">52"</td><td class="py-1.5 px-1">53"</td><td class="py-1.5 px-1">54"</td><td class="py-1.5 px-1">54"</td><td class="py-1.5 px-1">55"</td><td class="py-1.5 px-1">55"</td></tr>
+                                    <tr><td class="py-1.5 px-1 text-left font-medium bg-gray-50">Shoulder</td><td class="py-1.5 px-1">13.5"</td><td class="py-1.5 px-1">14"</td><td class="py-1.5 px-1">14.5"</td><td class="py-1.5 px-1">15"</td><td class="py-1.5 px-1">16"</td><td class="py-1.5 px-1">16"</td></tr>
+                                    <tr><td class="py-1.5 px-1 text-left font-medium bg-gray-50">Chest *</td><td class="py-1.5 px-1">17"</td><td class="py-1.5 px-1">19"</td><td class="py-1.5 px-1">21"</td><td class="py-1.5 px-1">23"</td><td class="py-1.5 px-1">25"</td><td class="py-1.5 px-1">26"</td></tr>
+                                    <tr><td class="py-1.5 px-1 text-left font-medium bg-gray-50">Waist *</td><td class="py-1.5 px-1">15"</td><td class="py-1.5 px-1">17"</td><td class="py-1.5 px-1">19"</td><td class="py-1.5 px-1">21"</td><td class="py-1.5 px-1">23"</td><td class="py-1.5 px-1">24"</td></tr>
+                                    <tr><td class="py-1.5 px-1 text-left font-medium bg-gray-50">Sleeves</td><td class="py-1.5 px-1">22"</td><td class="py-1.5 px-1">22.5"</td><td class="py-1.5 px-1">23"</td><td class="py-1.5 px-1">23.5"</td><td class="py-1.5 px-1">24"</td><td class="py-1.5 px-1">24"</td></tr>
+                                </tbody>
+                            </table>
+                            <p class="text-[9px] text-gray-400 mt-2 italic leading-tight">* Note: Bust/Chest and Waist are written flat / one sided layout.</p>
+                        </div>
+                    </div>
+
+                    <h4 class="text-[11px] tracking-widest uppercase text-[#4E2A45] font-semibold mb-2">Product Specifications</h4>
+                    <p id="modal-description" class="text-xs text-[#704264] leading-relaxed mb-6 font-light"></p>
+                    
+                    <div class="bg-[#E6DFD3]/40 p-4 rounded-lg border border-[#D4AF37]/10 mb-6">
+                        <h5 class="text-[10px] uppercase tracking-widest text-[#4E2A45] font-semibold mb-1">Tailoring & Sizing Guide</h5>
+                        <p class="text-[11px] text-[#704264] font-light leading-normal">Standard pret sizes run regular. Custom measurements can be coordinated via our WhatsApp line after booking.</p>
+                    </div>
+                </div>
+
+                <!-- Final Action Trigger Box -->
+                <div>
+                    <button id="modal-wa-submit-btn" onclick="sendWhatsAppInquiry()" class="block w-full bg-[#4E2A45] text-[#FDFBF7] text-center text-xs tracking-widest uppercase font-medium py-3.5 rounded-md border border-[#D4AF37] hover:bg-[#704264] transition duration-300 shadow-sm">
+                        Confirm Size & Order via WhatsApp
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- ==================== PAGE 3: THE ATELIER ==================== -->
+    <main id="page-atelier" class="page-content hidden">
+        <section class="py-24 px-6 max-w-3xl mx-auto text-center bg-[#E6DFD3]/40 my-12 border border-[#D4AF37]/40 rounded-sm">
+            <span class="text-xs tracking-[0.3em] text-[#D4AF37] uppercase block mb-4 font-semibold">Bespoke Couture</span>
+            <h1 class="font-serif text-4xl font-light text-[#4E2A45] mb-6">The ALISHZAY Atelier</h1>
+            <p class="text-[#704264] text-sm leading-relaxed mb-8 font-light">
+                Do you have a specific fabric or custom design vision in mind? Through our premium Atelier service, you can consult with us to design bespoke custom-sized wear.
+            </p>
+            <a href="https://wa.me/923003994023?text=Hello%20ALISHZAY.%20I%20would%20like%20to%20book%20a%20custom%20design%20consultation%20appointment." target="_blank" class="inline-block bg-[#4E2A45] text-[#FDFBF7] border border-[#D4AF37] px-8 py-3.5 text-xs tracking-widest uppercase hover:bg-[#704264] transition duration-300">
+                Book Design Consultation
+            </a>
+        </section>
+    </main>
+
+
+    <!-- ==================== PAGE 4: ABOUT US ==================== -->
+    <main id="page-about" class="page-content hidden">
+        <section class="max-w-4xl mx-auto px-6 py-20">
+            <div class="text-center mb-16">
+                <span class="text-xs tracking-[0.3em] text-[#D4AF37] uppercase block mb-2 font-semibold">Heritage & Vision</span>
+                <h1 class="font-serif text-4xl md:text-5xl font-light text-[#4E2A45]">About ALISHZAY</h1>
+                <div class="w-16 h-[1px] bg-[#D4AF37] mx-auto mt-4"></div>
+            </div>
+
+            <div class="space-y-12 text-[#4E2A45] font-sans text-sm leading-relaxed font-light">
+                <p class="text-base text-center italic text-[#704264] max-w-2xl mx-auto mb-12">
+                    "Redefining contemporary Eastern wear through the timeless art of premium fabrics, impeccable structural design, and effortless everyday luxury."
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 pt-6">
+                    <div>
+                        <h3 class="font-serif text-2xl text-[#4E2A45] mb-4 font-normal">Our Craft Philosophy</h3>
+                        <p class="text-xs text-[#704264]">
+                            ALISHZAY was born out of a desire to create clothing that balances traditional cultural aesthetics with modern, minimalist sensibilities. Every single curation under our Lawn, Cambric, and Khaddar edits undergoes rigorous quality testing, ensuring that luxury feel is translated into structural durability.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-2xl text-[#4E2A45] mb-4 font-normal">Our Commitment</h3>
+                        <p class="text-xs text-[#704264]">
+                            We specialize in multi-functional Pret collections and fully customizable bespoke Atelier silhouettes. We carefully engineer layouts that celebrate personal expression, providing fashion options that make you look, feel, and move with absolute luxury and unmatched grace.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- ==================== PAGE 5: TERMS & CONDITIONS ==================== -->
+    <main id="page-terms" class="page-content hidden">
+        <section class="max-w-3xl mx-auto px-6 py-20">
+            <div class="mb-12 border-b border-[#E6DFD3] pb-6">
+                <h1 class="font-serif text-3xl md:text-4xl font-light text-[#4E2A45]">Terms & Conditions</h1>
+                <p class="text-[10px] uppercase tracking-widest text-[#D4AF37] font-semibold mt-2">Effective: June 2026</p>
+            </div>
+
+            <div class="space-y-8 text-xs text-[#704264] leading-relaxed font-light">
+                <div>
+                    <h3 class="font-serif text-lg text-[#4E2A45] font-normal mb-2">1. How Ordering Works</h3>
+                    <p>We showcase our collections here as a digital lookbook. When you find an outfit you love, clicking the order button will connect you directly with our personal **WhatsApp Concierge channel**. Because we focus on premium fabrics, our inventory changes quickly. We will confirm if your selected fabric and size are available when you message us.</p>
+                </div>
+                <div>
+                    <h3 class="font-serif text-lg text-[#4E2A45] font-normal mb-2">2. Pricing & Payments</h3>
+                    <p>All prices shown on our website are in **Pakistani Rupees (PKR)**. Shipping costs are calculated separately depending on your location, unless we are running a "Free Delivery" promotion in our top announcement bar. We will guide you through our secure payment options during our WhatsApp chat.</p>
+                </div>
+                <div>
+                    <h3 class="font-serif text-lg text-[#4E2A45] font-normal mb-2">3. Custom & Atelier Orders</h3>
+                    <p>If you are ordering a custom-tailored piece through **The ALISHZAY Atelier**, we will double-check all your measurements with you before we begin. Once our tailors start cutting the fabric and assembling your bespoke outfit, we cannot accept any changes to the size, design, or measurements.</p>
+                </div>
+                <div>
+                    <h3 class="font-serif text-lg text-[#4E2A45] font-normal mb-2">4. Cancellation Policy</h3>
+                    <p>We understand that plans change! If you need to cancel an order, you must notify us via WhatsApp within **24 hours** of placing it. Once 24 hours have passed, the order goes into production and cannot be cancelled.</p>
+                </div>
+                <div>
+                    <h3 class="font-serif text-lg text-[#4E2A45] font-normal mb-2">5. Return & Exchange Policy</h3>
+                    <p class="mb-3">Because our outfits are carefully crafted, **all sales are final**. Once a parcel is successfully delivered and paid for, it cannot be returned or exchanged under standard circumstances.</p>
+                    
+                    <div class="bg-[#E6DFD3]/30 p-4 rounded-md border-l-2 border-[#D4AF37] mt-3">
+                        <strong class="font-serif text-sm text-[#4E2A45] block mb-1">What to do if your item arrives damaged or defective:</strong>
+                        <p class="mb-2">If you receive a defective or damaged piece, please email us at <a href="mailto:alishzay.boutique@gmail.com" class="underline text-[#4E2A45] font-medium">alishzay.boutique@gmail.com</a> within <strong>2 days of delivery</strong>.</p>
+                        <p class="mb-2">To help us verify the issue, your email <strong>must include</strong>: <br>
+                        1. A <strong>clear unboxing video</strong> (this video must be unedited/without cuts, showing the sealed package <em>before</em> it was opened, the full unboxing process, and the exact condition of the item).<br>
+                        2. Clear <strong>close-up photos</strong> of the defect.</p>
+                        <p>Once our team verifies the damage, we will happily offer you a <strong>full refund or an exchange</strong>, based entirely on your preference. Your satisfaction is our utmost priority! 💕</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- ==================== PAGE 6: PRIVACY POLICY ==================== -->
+    <main id="page-privacy" class="page-content hidden">
+        <section class="max-w-3xl mx-auto px-6 py-20">
+            <div class="mb-12 border-b border-[#E6DFD3] pb-6">
+                <h1 class="font-serif text-3xl md:text-4xl font-light text-[#4E2A45]">Privacy Policy</h1>
+                <p class="text-[10px] uppercase tracking-widest text-[#D4AF37] font-semibold mt-2">Last Updated: June 2026</p>
+            </div>
+
+            <div class="space-y-8 text-xs text-[#704264] leading-relaxed font-light">
+                <div>
+                    <h3 class="font-serif text-lg text-[#4E2A45] font-normal mb-2">1. We Don't Track You Secretly</h3>
+                    <p>Your digital privacy is safe with us. We do not use sneaky background tracking codes, cookies, or digital profiling scripts to monitor your movements across the internet. Anything you browse on our lookbook website stays entirely private within your own web browser.</p>
+                </div>
+                <div>
+                    <h3 class="font-serif text-lg text-[#4E2A45] font-normal mb-2">2. Safe Shopping on WhatsApp & Social Media</h3>
+                    <p>Our website is an interactive digital catalog. When you click to buy a dress, join our broadcast circle, or ask a question, our site securely redirects you to official external platforms like WhatsApp, Instagram, or Facebook. Because these checkouts happen directly through those secure apps, your personal chat details are protected by their high-security networks.</p>
+                </div>
+                <div>
+                    <h3 class="font-serif text-lg text-[#4E2A45] font-normal mb-2">3. How We Use Your Shipping Details</h3>
+                    <p>When you place an order with us on WhatsApp, we will ask for your name, phone number, delivery address, and sizing measurements. We <strong>only</strong> use this information to properly tailor your dress and safely ship your parcel to your doorstep. We <strong>never</strong> sell, rent, or share your contact details with outside marketing companies. Your information is strictly used to get your luxury outfits delivered smoothly.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- Luxury Premium Footer -->
+    <footer class="bg-[#FDFBF7] text-[#4E2A45] pt-20 pb-12 px-6 mt-12 border-t border-[#E6DFD3]">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-[#E6DFD3] pb-16 mb-12">
+            
+            <!-- Left Column: Identity Info -->
+            <div class="flex flex-col justify-start">
+                <h4 class="font-serif text-2xl tracking-[0.2em] uppercase mb-3 text-[#4E2A45]">ALISHZAY</h4>
+                <p class="text-[#704264] text-xs font-light leading-relaxed mb-6">Premium Eastern fabrics thoughtfully designed and tailored into exquisite luxury pret.</p>
+                
+                <div class="border-t border-[#E6DFD3]/60 pt-4 space-y-3 text-xs tracking-wide text-[#704264]">
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-medium text-[#4E2A45] w-20 inline-block">Call:</span>
+                        <a href="tel:03003994023" class="hover:text-[#D4AF37] transition font-light">03003994023</a>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-medium text-[#4E2A45] w-20 inline-block">WhatsApp:</span>
+                        <a href="https://wa.me/923003994023" target="_blank" class="hover:text-[#D4AF37] transition font-light">03003994023</a>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-medium text-[#4E2A45] w-20 inline-block">Email:</span>
+                        <a href="mailto:alishzay.boutique@gmail.com" class="hover:text-[#D4AF37] transition font-light">alishzay.boutique@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Middle Column: Navigation Quick Links -->
+            <div>
+                <h5 class="text-xs tracking-widest uppercase mb-4 text-[#D4AF37] font-semibold">Explore</h5>
+                <ul class="space-y-3 text-xs text-[#704264] font-medium flex flex-col items-start">
+                    <li><button onclick="showPage('pret'); filterCategory('all');" class="hover:text-[#4E2A45] transition text-left">Ready-To-Wear</button></li>
+                    <li><button onclick="showPage('atelier')" class="hover:text-[#4E2A45] transition text-left">The Atelier Boutique</button></li>
+                    <li><button onclick="showPage('about')" class="hover:text-[#4E2A45] transition text-left">About Us</button></li>
+                    <li><button onclick="showPage('terms')" class="hover:text-[#4E2A45] transition text-left">Terms & Conditions</button></li>
+                    <li><button onclick="showPage('privacy')" class="hover:text-[#4E2A45] transition text-left">Privacy Policy</button></li>
+                </ul>
+            </div>
+
+            <!-- Right Column: Broadcast Circle -->
+            <div class="flex flex-col justify-between">
+                <div>
+                    <h5 class="text-xs tracking-widest uppercase mb-4 text-[#D4AF37] font-semibold">The Boutique Circle</h5>
+                    <p class="text-[#704264] text-xs font-light mb-4">Join our inner circle to receive exclusive design previews via WhatsApp broadcast.</p>
+                    <a href="https://wa.me/923003994023?text=Please%20add%20me%20to%20your%20broadcast%20list." target="_blank" class="inline-block bg-[#E6DFD3] text-[#4E2A45] border border-[#D4AF37] text-xs tracking-widest uppercase px-4 py-2.5 hover:bg-[#4E2A45] hover:text-[#FDFBF7] transition duration-300 w-full text-center font-medium rounded-sm mb-6">Join via WhatsApp</a>
+                </div>
+
+                <!-- Bottom Right Social Handles Icons Panel -->
+                <div class="mt-auto pt-4 border-t border-[#E6DFD3]/40">
+                    <span class="text-[10px] uppercase tracking-[0.2em] text-[#D4AF37] block font-semibold mb-3">Connect & Shop Now</span>
+                    <div class="flex flex-wrap gap-2.5">
+                        <a href="https://www.instagram.com/alishzay_official/" target="_blank" class="social-glow-circle" title="Instagram - alishzay_official">
+                            <i class="fa-brands fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61590803154555" target="_blank" class="social-glow-circle" title="Facebook">
+                            <i class="fa-brands fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@alishzay_official" target="_blank" class="social-glow-circle" title="YouTube - @alishzay_official">
+                            <i class="fa-brands fa-youtube text-lg"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@alishzay.official" target="_blank" class="social-glow-circle" title="TikTok - @alishzay.official">
+                            <i class="fa-brands fa-tiktok text-lg"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/alishzay-official" target="_blank" class="social-glow-circle" title="LinkedIn - ALISHZAY BOUTIQUE">
+                            <i class="fa-brands fa-linkedin-in text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="text-center text-[11px] text-[#D4AF37] font-light tracking-wider">&copy; 2026 ALISHZAY Haute Couture. All Rights Reserved.</p>
+    </footer>
+
+
+    <!-- ==================== JAVASCRIPT LOGIC ==================== -->
+    <script>
+        // Global variables to monitor context
+        let currentSelectedSize = "";
+        let globalActiveProductKey = "";
+
+        // --- 1. Collection Interactive Inventory Data Objects ---
+        const clothingDatabase = {
+            lawn1: {
+                title: "Floral Printed Premium Lawn",
+                collection: "Lawn Collection",
+                price: "PKR 8,500",
+                description: "Crafted on premium air-jet lawn, this exquisite silhouette features intricate, whimsical floral motifs screen prints. Perfectly breathable and styled into an elegant long-kameez cut with classic soft-piping updates, ideal for high-end summer statements.",
+                angles: [
+                    "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=687&auto=format&fit=crop", 
+                    "https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=687&auto=format&fit=crop", 
+                    "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=687&auto=format&fit=crop", 
+                    "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=687&auto=format&fit=crop"  
+                ]
+            },
+            cambric1: {
+                title: "Signature Sage Cambric Co-ord",
+                collection: "Cambric Collection",
+                price: "PKR 9,200",
+                description: "An everyday luxury solid staple made on fine, structured mid-season premium cambric fabric. This monochrome co-ord features elegant statement lace inserts on modern flared sleeves and tailored straight matching trousers.",
+                angles: [
+                    "https://images.unsplash.com/photo-1631857455684-a54a2f03665f?q=80&w=720&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=720&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=720&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=720&auto=format&fit=crop"
+                ]
+            },
+            khaddar1: {
+                title: "Embroidery Block Loom Khaddar",
+                collection: "Khaddar Collection",
+                price: "PKR 9,800",
+                description: "Woven on cozy premium winter block looms, this heavy-weight luxury khaddar features geometric Resham thread embroidery details running across the neckline and cuffs. Paired nicely with a soft woolen loop shawl profile layout.",
+                angles: [
+                    "https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=2070&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1631857455684-a54a2f03665f?q=80&w=2070&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=2070&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=2070&auto=format&fit=crop"
+                ]
+            }
+        };
+
+        // --- 2. Side Menu Drawer Logic ---
+        function toggleSideMenu() {
+            const menu = document.getElementById('side-menu');
+            const overlay = document.getElementById('side-menu-overlay');
+            const isOpen = menu.classList.contains('translate-x-0');
+
+            if (isOpen) {
+                menu.classList.remove('translate-x-0');
+                menu.classList.add('-translate-x-full');
+                overlay.classList.remove('opacity-100', 'pointer-events-auto');
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+            } else {
+                menu.classList.remove('-translate-x-full');
+                menu.classList.add('translate-x-0');
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+                overlay.classList.add('opacity-100', 'pointer-events-auto');
+            }
+        }
+
+        // --- 3. Search Modal Framework Controls ---
+        function toggleSearchModal() {
+            const modal = document.getElementById('search-modal');
+            const isHidden = modal.classList.contains('hidden');
+
+            if (isHidden) {
+                modal.classList.remove('hidden');
+                document.getElementById('search-input').focus();
+            } else {
+                modal.classList.add('hidden');
+                document.getElementById('search-input').value = '';
+                executeSearch();
+            }
+        }
+
+        function executeSearch() {
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            const resultsBox = document.getElementById('search-results');
+            
+            if (!query) {
+                resultsBox.innerHTML = '<p class="text-xs text-[#704264]/70 italic py-2">Type above to see matching lookbook curations...</p>';
+                return;
+            }
+
+            let htmlString = "";
+            let itemsFoundCount = 0;
+
+            for (const key in clothingDatabase) {
+                const item = clothingDatabase[key];
+                if (item.title.toLowerCase().includes(query) || item.collection.toLowerCase().includes(query) || item.description.toLowerCase().includes(query)) {
+                    itemsFoundCount++;
+                    htmlString += `
+                        <div class="flex items-center space-x-4 py-3 cursor-pointer hover:bg-[#E6DFD3]/20 transition px-2 rounded-md" onclick="closeAllOverlays(); openDressModal('${key}')">
+                            <img src="${item.angles[0]}" class="w-10 h-12 object-cover rounded-md border border-[#E6DFD3]">
+                            <div>
+                                <h5 class="text-xs uppercase font-medium text-[#4E2A45]">${item.title}</h5>
+                                <span class="text-[9px] uppercase tracking-wider text-[#D4AF37]">${item.collection} — ${item.price}</span>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+
+            if (itemsFoundCount === 0) {
+                resultsBox.innerHTML = '<p class="text-xs text-[#704264]/70 italic py-3 text-center">No matching curations discovered.</p>';
+            } else {
+                resultsBox.innerHTML = htmlString;
+            }
+        }
+
+        function closeAllOverlays() {
+            document.getElementById('search-modal').classList.add('hidden');
+        }
+
+        // --- 4. Product Detail Lookbook Modal Handlers ---
+        function openDressModal(productKey) {
+            const product = clothingDatabase[productKey];
+            if (!product) return;
+
+            globalActiveProductKey = productKey;
+            currentSelectedSize = ""; // Reset size selector when opening a new dress card
+            
+            // Auto hide the size chart dropdown when opening a new modal view
+            document.getElementById('size-chart-dropdown').classList.add('hidden');
+
+            // Reset look of available size buttons back to clean unselected state
+            ['XS', 'S', 'M', 'L'].forEach(sz => {
+                const b = document.getElementById('size-btn-' + sz);
+                if (b) {
+                    b.className = "w-11 h-11 border border-[#704264] text-xs font-medium uppercase tracking-wider transition-all duration-300 rounded-md flex items-center justify-center text-[#704264] bg-transparent hover:border-[#4E2A45]";
+                }
+            });
+
+            document.getElementById('modal-title').innerText = product.title;
+            document.getElementById('modal-collection-tag').innerText = product.collection;
+            document.getElementById('modal-price').innerText = product.price;
+            document.getElementById('modal-description').innerText = product.description;
+            
+            const activeImg = document.getElementById('modal-active-img');
+            activeImg.src = product.angles[0];
+
+            const thumbsGrid = document.getElementById('modal-thumbs-grid');
+            thumbsGrid.innerHTML = ""; 
+            
+            product.angles.forEach((imgUrl) => {
+                const thumbBtn = document.createElement('button');
+                thumbBtn.className = "aspect-square rounded-md overflow-hidden border border-[#E6DFD3] hover:border-[#D4AF37] focus:outline-none transition-all";
+                thumbBtn.innerHTML = `<img src="${imgUrl}" class="w-full h-full object-cover">`;
+                thumbBtn.onclick = function() { activeImg.src = imgUrl; };
+                thumbsGrid.appendChild(thumbBtn);
+            });
+
+            // Target the correct modal element ID to show it
+            document.querySelectorAll('[id="dress-modal"]')[0].classList.remove('hidden');
+            document.body.style.overflow = "hidden"; 
+        }
+
+        // Toggle visibility state for Size Chart Dropdown 
+        function toggleSizeChartDropdown() {
+            const chartDropdown = document.getElementById('size-chart-dropdown');
+            chartDropdown.classList.toggle('hidden');
+        }
+
+        function selectProductSize(sizeName) {
+            currentSelectedSize = sizeName;
+            
+            // Toggle highlight styles using clear premium active indicators
+            ['XS', 'S', 'M', 'L'].forEach(sz => {
+                const btn = document.getElementById('size-btn-' + sz);
+                if (btn) {
+                    if(sz === sizeName) {
+                        btn.className = "w-11 h-11 border border-[#4E2A45] bg-[#4E2A45] text-[#FDFBF7] text-xs font-semibold uppercase tracking-wider transition-all duration-300 rounded-md flex items-center justify-center";
+                    } else {
+                        btn.className = "w-11 h-11 border border-[#704264] text-[#704264] bg-transparent text-xs font-medium uppercase tracking-wider transition-all duration-300 rounded-md flex items-center justify-center hover:border-[#4E2A45]";
+                    }
+                }
+            });
+        }
+
+        function sendWhatsAppInquiry() {
+            if (!currentSelectedSize) {
+                alert("Please select your preferred size before connecting to WhatsApp.");
+                return;
+            }
+
+            const product = clothingDatabase[globalActiveProductKey];
+            if (!product) return;
+
+            // Formulate clean chat text to deliver your ordered items instantly
+            const dynamicMsg = `Hello ALISHZAY. I am interested in ordering the ${product.title} (${product.price}) in size: ${currentSelectedSize}. Kindly confirm availability.`;
+            
+            const cleanWaUrl = "https://wa.me/923003994023?text=" + encodeURIComponent(dynamicMsg);
+            window.open(cleanWaUrl, '_blank');
+        }
+
+        function closeDressModal() {
+            document.querySelectorAll('[id="dress-modal"]')[0].classList.add('hidden');
+            document.body.style.overflow = "auto"; 
+        }
+
+        // --- 5. Page Switching Logic ---
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => page.classList.add('hidden'));
+
+            const selectedPage = document.getElementById('page-' + pageId);
+            if (selectedPage) {
+                selectedPage.classList.remove('hidden');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- 6. Category Filtering Logic ---
+        function filterCategory(categoryName) {
+            const cards = document.querySelectorAll('.item-card');
+            const titleElement = document.getElementById('pret-title');
+            
+            if (categoryName === 'all') {
+                titleElement.innerText = "Ready-To-Wear Pret";
+                cards.forEach(card => card.classList.remove('hidden'));
+            } else {
+                titleElement.innerText = "Ready-To-Wear " + categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
+                
+                cards.forEach(card => {
+                    if (card.getAttribute('data-category') === categoryName) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            }
+        }
+
+        // --- 7. Automatic 5-Second Image Carousel ---
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.carousel-img');
+        const totalSlides = slides.length;
+
+        function cycleSlideshow() {
+            if(!slides.length) return;
+            slides[currentSlideIndex].classList.remove('opacity-100');
+            slides[currentSlideIndex].classList.add('opacity-0');
+            currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+            slides[currentSlideIndex].classList.remove('opacity-0');
+            slides[currentSlideIndex].classList.add('opacity-100');
+        }
+        setInterval(cycleSlideshow, 5000);
+    </script>
+
+</body>
+</html>
