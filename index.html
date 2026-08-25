@@ -53,6 +53,139 @@
             color: #D4AF37;
             box-shadow: 0 0 20px rgba(229, 213, 203, 1), inset 0 0 8px rgba(229, 213, 203, 0.6);
         }
+
+        /* Premium collection banners */
+        .collection-banner {
+            position: relative;
+            width: 100%;
+            min-height: 430px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            background: #E6DFD3;
+            box-shadow: 0 10px 35px rgba(78, 42, 69, 0.08);
+            isolation: isolate;
+        }
+
+        .collection-banner-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            user-select: none;
+            -webkit-user-drag: none;
+            transition: transform 0.8s ease;
+            z-index: -2;
+        }
+
+        .collection-banner-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(40, 20, 34, 0.62) 0%, rgba(40, 20, 34, 0.28) 48%, rgba(40, 20, 34, 0.05) 100%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .collection-banner-content {
+            min-height: 430px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            padding: 48px clamp(24px, 7vw, 90px);
+            color: #FDFBF7;
+            pointer-events: none;
+        }
+
+        .collection-banner-label,
+        .collection-banner-title,
+        .collection-banner-button {
+            pointer-events: auto;
+        }
+
+        .collection-banner-label {
+            font-size: 10px;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: #E5C453;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .collection-banner-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.6rem, 5vw, 5rem);
+            line-height: 0.95;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            margin-bottom: 24px;
+        }
+
+        .collection-banner-button {
+            appearance: none;
+            border: 1px solid #D4AF37;
+            background: rgba(253, 251, 247, 0.96);
+            color: #4E2A45;
+            padding: 12px 22px;
+            font-size: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            cursor: pointer;
+            touch-action: manipulation;
+            transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+        }
+
+        .collection-banner-button:hover {
+            background: #4E2A45;
+            color: #FDFBF7;
+            transform: translateY(-2px);
+        }
+
+        .collection-banner-button:focus-visible {
+            outline: 2px solid #E5C453;
+            outline-offset: 4px;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .collection-banner:hover .collection-banner-image {
+                transform: scale(1.025);
+            }
+        }
+
+        /* On phones the banner stays non-clickable; only its button receives clicks. */
+        @media (max-width: 640px) {
+            .collection-banners-section {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+
+            .collection-banner {
+                min-height: 360px;
+                border-radius: 10px;
+            }
+
+            .collection-banner-content {
+                min-height: 360px;
+                padding: 32px 24px;
+                align-items: center;
+                text-align: center;
+                justify-content: flex-end;
+                background: linear-gradient(0deg, rgba(40, 20, 34, 0.55) 0%, rgba(40, 20, 34, 0.04) 65%);
+            }
+
+            .collection-banner-title {
+                font-size: clamp(2.4rem, 11vw, 3.4rem);
+                margin-bottom: 18px;
+            }
+
+            .collection-banner-button {
+                padding: 12px 18px;
+            }
+        }
     </style>
 </head>
 <body class="bg-[#FDFBF7] text-[#4E2A45] font-sans antialiased">
@@ -114,10 +247,10 @@
             <!-- Links Stack -->
             <nav class="flex flex-col space-y-[1.35rem] text-xs tracking-[0.2em] uppercase font-medium text-[#704264]">
                 <button onclick="showPage('home'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">Home</button>
-                <button onclick="showPage('pret'); filterCategory('all'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">Ready To Wear</button>
-                <button onclick="showPage('pret'); filterCategory('lawn'); toggleSideMenu();" class="text-left pl-4 hover:text-[#4E2A45] transition text-[11px] text-[#704264]/80">- Lawn</button>
-                <button onclick="showPage('pret'); filterCategory('cambric'); toggleSideMenu();" class="text-left pl-4 hover:text-[#4E2A45] transition text-[11px] text-[#704264]/80">- Cambric</button>
-                <button onclick="showPage('pret'); filterCategory('khaddar'); toggleSideMenu();" class="text-left pl-4 hover:text-[#4E2A45] transition text-[11px] text-[#704264]/80">- Khaddar</button>
+                <button onclick="showPage('pret'); filterCategory('all', 'Ready To Wear'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">Ready To Wear</button>
+                <button onclick="showPage('pret'); filterCategory('lawn', 'Lawn'); toggleSideMenu();" class="text-left pl-4 hover:text-[#4E2A45] transition text-[11px] text-[#704264]/80">- Lawn</button>
+                <button onclick="showPage('pret'); filterCategory('cambric', 'Cambric'); toggleSideMenu();" class="text-left pl-4 hover:text-[#4E2A45] transition text-[11px] text-[#704264]/80">- Cambric</button>
+                <button onclick="showPage('pret'); filterCategory('khaddar', 'Khaddar'); toggleSideMenu();" class="text-left pl-4 hover:text-[#4E2A45] transition text-[11px] text-[#704264]/80">- Khaddar</button>
                 <button onclick="showPage('atelier'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">The Atelier</button>
                 <button onclick="showPage('about'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">About Us</button>
                 <button onclick="showPage('terms'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition pt-2 border-t border-[#E6DFD3]/60 text-[11px]">Terms & Conditions</button>
@@ -177,43 +310,76 @@
             </div>
         </section>
 
-        <!-- Categories Section -->
-        <section class="py-20 px-6 max-w-6xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="font-serif text-4xl font-light tracking-wide text-[#4E2A45]">Ready To Wear</h2>
-                <div class="w-12 h-[1px] bg-[#D4AF37] mx-auto mt-3"></div>
-            </div>
+        <!-- ==================== COLLECTION BANNERS ==================== -->
+        <section class="collection-banners-section py-12 md:py-16 px-4 sm:px-6 max-w-7xl mx-auto">
+            <div class="space-y-6 md:space-y-8">
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                <!-- Lawn Box -->
-                <button onclick="showPage('pret'); filterCategory('lawn');" class="group bg-[#E6DFD3] hover:bg-[#4E2A45] border border-[#D4AF37]/30 aspect-square rounded-xl p-8 flex flex-col justify-between items-center text-center transition-all duration-500 shadow-sm hover:shadow-md">
-                    <div class="w-full flex justify-end"><span class="text-[10px] tracking-widest text-[#704264] group-hover:text-[#E5C453] font-light">COLLECTION</span></div>
-                    <div>
-                        <h3 class="font-serif text-3xl tracking-wide text-[#4E2A45] group-hover:text-[#FDFBF7] transition">Lawn</h3>
-                        <span class="block text-[10px] tracking-[0.2em] uppercase text-[#704264] group-hover:text-[#E6DFD3] font-light mt-2">Premium Summer Edit</span>
+                <!-- New Arrival -->
+                <article class="collection-banner">
+                    <img src="new-arrival-banner.jpg" alt="ALISHZAY New Arrival" class="collection-banner-image" draggable="false">
+                    <div class="collection-banner-overlay"></div>
+                    <div class="collection-banner-content">
+                        <span class="collection-banner-label">The Latest Edit</span>
+                        <h2 class="collection-banner-title">New Arrival</h2>
+                        <button type="button" class="collection-banner-button" onclick="openCollection('all', 'New Arrival', this)">Shop New Arrivals</button>
                     </div>
-                    <span class="text-xs uppercase tracking-widest font-medium text-[#4E2A45] group-hover:text-[#FDFBF7] border-b border-[#4E2A45]/20 group-hover:border-[#FDFBF7] pb-1 transition">View Outfits</span>
-                </button>
+                </article>
 
-                <!-- Cambric Box -->
-                <button onclick="showPage('pret'); filterCategory('cambric');" class="group bg-[#E6DFD3] hover:bg-[#4E2A45] border border-[#D4AF37]/30 aspect-square rounded-xl p-8 flex flex-col justify-between items-center text-center transition-all duration-500 shadow-sm hover:shadow-md">
-                    <div class="w-full flex justify-end"><span class="text-[10px] tracking-widest text-[#704264] group-hover:text-[#E5C453] font-light">COLLECTION</span></div>
-                    <div>
-                        <h3 class="font-serif text-3xl tracking-wide text-[#4E2A45] group-hover:text-[#FDFBF7] transition">Cambric</h3>
-                        <span class="block text-[10px] tracking-[0.2em] uppercase text-[#704264] group-hover:text-[#E6DFD3] font-light mt-2">Midseason Staples</span>
+                <!-- Cord-Set -->
+                <article class="collection-banner">
+                    <img src="cord-set-banner.jpg" alt="ALISHZAY Cord-Set Collection" class="collection-banner-image" draggable="false">
+                    <div class="collection-banner-overlay"></div>
+                    <div class="collection-banner-content">
+                        <span class="collection-banner-label">Effortless Coordinates</span>
+                        <h2 class="collection-banner-title">Cord-Set</h2>
+                        <button type="button" class="collection-banner-button" onclick="openCollection('cambric', 'Cord-Set', this)">Shop Cord-Sets</button>
                     </div>
-                    <span class="text-xs uppercase tracking-widest font-medium text-[#4E2A45] group-hover:text-[#FDFBF7] border-b border-[#4E2A45]/20 group-hover:border-[#FDFBF7] pb-1 transition">View Outfits</span>
-                </button>
+                </article>
 
-                <!-- Khaddar Box -->
-                <button onclick="showPage('pret'); filterCategory('khaddar');" class="group bg-[#E6DFD3] hover:bg-[#4E2A45] border border-[#D4AF37]/30 aspect-square rounded-xl p-8 flex flex-col justify-between items-center text-center transition-all duration-500 shadow-sm hover:shadow-md">
-                    <div class="w-full flex justify-end"><span class="text-[10px] tracking-widest text-[#704264] group-hover:text-[#E5C453] font-light">COLLECTION</span></div>
-                    <div>
-                        <h3 class="font-serif text-3xl tracking-wide text-[#4E2A45] group-hover:text-[#FDFBF7] transition">Khaddar</h3>
-                        <span class="block text-[10px] tracking-[0.2em] uppercase text-[#704264] group-hover:text-[#E6DFD3] font-light mt-2">Winter Cozy Luxury</span>
+                <!-- Summer Collection -->
+                <article class="collection-banner">
+                    <img src="summer-collection-banner.jpg" alt="ALISHZAY Summer Collection" class="collection-banner-image" draggable="false">
+                    <div class="collection-banner-overlay"></div>
+                    <div class="collection-banner-content">
+                        <span class="collection-banner-label">Light &amp; Elegant</span>
+                        <h2 class="collection-banner-title">Summer Collection</h2>
+                        <button type="button" class="collection-banner-button" onclick="openCollection('lawn', 'Summer Collection', this)">Shop Summer</button>
                     </div>
-                    <span class="text-xs uppercase tracking-widest font-medium text-[#4E2A45] group-hover:text-[#FDFBF7] border-b border-[#4E2A45]/20 group-hover:border-[#FDFBF7] pb-1 transition">View Outfits</span>
-                </button>
+                </article>
+
+                <!-- Winter Collection -->
+                <article class="collection-banner">
+                    <img src="winter-collection-banner.jpg" alt="ALISHZAY Winter Collection" class="collection-banner-image" draggable="false">
+                    <div class="collection-banner-overlay"></div>
+                    <div class="collection-banner-content">
+                        <span class="collection-banner-label">Warm Luxury</span>
+                        <h2 class="collection-banner-title">Winter Collection</h2>
+                        <button type="button" class="collection-banner-button" onclick="openCollection('khaddar', 'Winter Collection', this)">Shop Winter</button>
+                    </div>
+                </article>
+
+                <!-- Long Frocks -->
+                <article class="collection-banner">
+                    <img src="long-frocks-banner.jpg" alt="ALISHZAY Long Frocks Collection" class="collection-banner-image" draggable="false">
+                    <div class="collection-banner-overlay"></div>
+                    <div class="collection-banner-content">
+                        <span class="collection-banner-label">Graceful Silhouettes</span>
+                        <h2 class="collection-banner-title">Long Frocks</h2>
+                        <button type="button" class="collection-banner-button" onclick="openCollection('all', 'Long Frocks', this)">Shop Long Frocks</button>
+                    </div>
+                </article>
+
+                <!-- Hijab Essentials -->
+                <article class="collection-banner">
+                    <img src="hijab-essentials-banner.jpg" alt="ALISHZAY Hijab Essentials" class="collection-banner-image" draggable="false">
+                    <div class="collection-banner-overlay"></div>
+                    <div class="collection-banner-content">
+                        <span class="collection-banner-label">Everyday Essentials</span>
+                        <h2 class="collection-banner-title">Hijab Essentials</h2>
+                        <button type="button" class="collection-banner-button" onclick="openCollection('all', 'Hijab Essentials', this)">Shop Hijab Essentials</button>
+                    </div>
+                </article>
+
             </div>
         </section>
     </main>
@@ -222,18 +388,8 @@
     <!-- ==================== PAGE 2: READY TO WEAR (PRET) ==================== -->
     <main id="page-pret" class="page-content hidden">
         <section class="py-12 bg-[#E6DFD3] text-center border-b border-[#D4AF37]">
-            <h1 id="pret-title" class="font-serif text-4xl font-light tracking-wide text-[#4E2A45]">Ready-To-Wear Pret</h1>
+            <h1 id="pret-title" class="font-serif text-4xl font-light tracking-wide text-[#4E2A45]">New Arrival</h1>
             <p class="text-xs text-[#704264] tracking-widest uppercase mt-2 font-semibold">Effortless Everyday Luxury & Semi-Formals</p>
-            
-            <div class="mt-4 flex justify-center gap-4 text-xs font-medium uppercase tracking-widest">
-                <button onclick="filterCategory('all')" class="text-[#4E2A45] hover:opacity-70">Show All</button>
-                <span class="text-[#D4AF37]">|</span>
-                <button onclick="filterCategory('lawn')" class="text-[#704264] hover:text-[#4E2A45]">Lawn</button>
-                <span class="text-[#D4AF37]">|</span>
-                <button onclick="filterCategory('cambric')" class="text-[#704264] hover:text-[#4E2A45]">Cambric</button>
-                <span class="text-[#D4AF37]">|</span>
-                <button onclick="filterCategory('khaddar')" class="text-[#704264] hover:text-[#4E2A45]">Khaddar</button>
-            </div>
         </section>
 
         <section class="max-w-7xl mx-auto px-6 py-16">
@@ -320,15 +476,13 @@
                             </button>
                         </div>
                         
-                        <!-- Clean Size Box Selectors: Supports full array with Crossed-out Out-of-Stock styles (XL/XXL) -->
+                        <!-- Clean Size Box Selectors: XS to XL available -->
                         <div class="flex flex-wrap gap-2.5" id="size-selector-container">
                             <button onclick="selectProductSize('XS')" id="size-btn-XS" class="w-11 h-11 border border-[#704264] text-xs font-medium uppercase tracking-wider transition-all duration-300 rounded-md flex items-center justify-center text-[#704264] bg-transparent hover:border-[#4E2A45]">XS</button>
                             <button onclick="selectProductSize('S')" id="size-btn-S" class="w-11 h-11 border border-[#704264] text-xs font-medium uppercase tracking-wider transition-all duration-300 rounded-md flex items-center justify-center text-[#704264] bg-transparent hover:border-[#4E2A45]">S</button>
                             <button onclick="selectProductSize('M')" id="size-btn-M" class="w-11 h-11 border border-[#704264] text-xs font-medium uppercase tracking-wider transition-all duration-300 rounded-md flex items-center justify-center text-[#704264] bg-transparent hover:border-[#4E2A45]">M</button>
                             <button onclick="selectProductSize('L')" id="size-btn-L" class="w-11 h-11 border border-[#704264] text-xs font-medium uppercase tracking-wider transition-all duration-300 rounded-md flex items-center justify-center text-[#704264] bg-transparent hover:border-[#4E2A45]">L</button>
-                            <!-- Sold Out Sizes Styled with Diagonal Line and Muted Background opacity -->
-                            <button class="w-11 h-11 border border-[#E6DFD3] text-gray-400 text-xs font-normal uppercase relative rounded-md flex items-center justify-center bg-gray-50/50 cursor-not-allowed line-through overflow-hidden" title="Out of Stock" disabled>XL</button>
-                            <button class="w-11 h-11 border border-[#E6DFD3] text-gray-400 text-xs font-normal uppercase relative rounded-md flex items-center justify-center bg-gray-50/50 cursor-not-allowed line-through overflow-hidden" title="Out of Stock" disabled>XXL</button>
+                            <button onclick="selectProductSize('XL')" id="size-btn-XL" class="w-11 h-11 border border-[#704264] text-xs font-medium uppercase tracking-wider transition-all duration-300 rounded-md flex items-center justify-center text-[#704264] bg-transparent hover:border-[#4E2A45]">XL</button>
                         </div>
 
                         <!-- Slide-Down Measurement Table UI -->
@@ -346,15 +500,14 @@
                                         <th class="py-1.5 px-1">M</th>
                                         <th class="py-1.5 px-1">L</th>
                                         <th class="py-1.5 px-1">XL</th>
-                                        <th class="py-1.5 px-1">XXL</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-100 text-[#704264]">
-                                    <tr><td class="py-1.5 px-1 text-left font-medium bg-gray-50">Length</td><td class="py-1.5 px-1">52"</td><td class="py-1.5 px-1">53"</td><td class="py-1.5 px-1">54"</td><td class="py-1.5 px-1">54"</td><td class="py-1.5 px-1">55"</td><td class="py-1.5 px-1">55"</td></tr>
-                                    <tr><td class="py-1.5 px-1 text-left font-medium bg-gray-50">Shoulder</td><td class="py-1.5 px-1">13.5"</td><td class="py-1.5 px-1">14"</td><td class="py-1.5 px-1">14.5"</td><td class="py-1.5 px-1">15"</td><td class="py-1.5 px-1">16"</td><td class="py-1.5 px-1">16"</td></tr>
-                                    <tr><td class="py-1.5 px-1 text-left font-medium bg-gray-50">Chest *</td><td class="py-1.5 px-1">17"</td><td class="py-1.5 px-1">19"</td><td class="py-1.5 px-1">21"</td><td class="py-1.5 px-1">23"</td><td class="py-1.5 px-1">25"</td><td class="py-1.5 px-1">26"</td></tr>
-                                    <tr><td class="py-1.5 px-1 text-left font-medium bg-gray-50">Waist *</td><td class="py-1.5 px-1">15"</td><td class="py-1.5 px-1">17"</td><td class="py-1.5 px-1">19"</td><td class="py-1.5 px-1">21"</td><td class="py-1.5 px-1">23"</td><td class="py-1.5 px-1">24"</td></tr>
-                                    <tr><td class="py-1.5 px-1 text-left font-medium bg-gray-50">Sleeves</td><td class="py-1.5 px-1">22"</td><td class="py-1.5 px-1">22.5"</td><td class="py-1.5 px-1">23"</td><td class="py-1.5 px-1">23.5"</td><td class="py-1.5 px-1">24"</td><td class="py-1.5 px-1">24"</td></tr>
+                                    <tr><td class="py-1.5 px-1 text-left font-medium bg-gray-50">Length</td><td class="py-1.5 px-1">52"</td><td class="py-1.5 px-1">53"</td><td class="py-1.5 px-1">54"</td><td class="py-1.5 px-1">54"</td><td class="py-1.5 px-1">55"</td></tr>
+                                    <tr><td class="py-1.5 px-1 text-left font-medium bg-gray-50">Shoulder</td><td class="py-1.5 px-1">13.5"</td><td class="py-1.5 px-1">14"</td><td class="py-1.5 px-1">14.5"</td><td class="py-1.5 px-1">15"</td><td class="py-1.5 px-1">16"</td></tr>
+                                    <tr><td class="py-1.5 px-1 text-left font-medium bg-gray-50">Chest *</td><td class="py-1.5 px-1">17"</td><td class="py-1.5 px-1">19"</td><td class="py-1.5 px-1">21"</td><td class="py-1.5 px-1">23"</td><td class="py-1.5 px-1">25"</td></tr>
+                                    <tr><td class="py-1.5 px-1 text-left font-medium bg-gray-50">Waist *</td><td class="py-1.5 px-1">15"</td><td class="py-1.5 px-1">17"</td><td class="py-1.5 px-1">19"</td><td class="py-1.5 px-1">21"</td><td class="py-1.5 px-1">23"</td></tr>
+                                    <tr><td class="py-1.5 px-1 text-left font-medium bg-gray-50">Sleeves</td><td class="py-1.5 px-1">22"</td><td class="py-1.5 px-1">22.5"</td><td class="py-1.5 px-1">23"</td><td class="py-1.5 px-1">23.5"</td><td class="py-1.5 px-1">24"</td></tr>
                                 </tbody>
                             </table>
                             <p class="text-[9px] text-gray-400 mt-2 italic leading-tight">* Note: Bust/Chest and Waist are written flat / one sided layout.</p>
@@ -528,7 +681,7 @@
             <div>
                 <h5 class="text-xs tracking-widest uppercase mb-4 text-[#D4AF37] font-semibold">Explore</h5>
                 <ul class="space-y-3 text-xs text-[#704264] font-medium flex flex-col items-start">
-                    <li><button onclick="showPage('pret'); filterCategory('all');" class="hover:text-[#4E2A45] transition text-left">Ready-To-Wear</button></li>
+                    <li><button onclick="showPage('pret'); filterCategory('all', 'Ready-To-Wear Pret');" class="hover:text-[#4E2A45] transition text-left">Ready-To-Wear</button></li>
                     <li><button onclick="showPage('atelier')" class="hover:text-[#4E2A45] transition text-left">The Atelier Boutique</button></li>
                     <li><button onclick="showPage('about')" class="hover:text-[#4E2A45] transition text-left">About Us</button></li>
                     <li><button onclick="showPage('terms')" class="hover:text-[#4E2A45] transition text-left">Terms & Conditions</button></li>
@@ -693,13 +846,12 @@
             if (!product) return;
 
             globalActiveProductKey = productKey;
-            currentSelectedSize = ""; // Reset size selector when opening a new dress card
+            currentSelectedSize = ""; 
             
-            // Auto hide the size chart dropdown when opening a new modal view
             document.getElementById('size-chart-dropdown').classList.add('hidden');
 
-            // Reset look of available size buttons back to clean unselected state
-            ['XS', 'S', 'M', 'L'].forEach(sz => {
+            // Reset all active size choices including XL
+            ['XS', 'S', 'M', 'L', 'XL'].forEach(sz => {
                 const b = document.getElementById('size-btn-' + sz);
                 if (b) {
                     b.className = "w-11 h-11 border border-[#704264] text-xs font-medium uppercase tracking-wider transition-all duration-300 rounded-md flex items-center justify-center text-[#704264] bg-transparent hover:border-[#4E2A45]";
@@ -725,7 +877,6 @@
                 thumbsGrid.appendChild(thumbBtn);
             });
 
-            // Target the correct modal element ID to show it
             document.querySelectorAll('[id="dress-modal"]')[0].classList.remove('hidden');
             document.body.style.overflow = "hidden"; 
         }
@@ -739,8 +890,8 @@
         function selectProductSize(sizeName) {
             currentSelectedSize = sizeName;
             
-            // Toggle highlight styles using clear premium active indicators
-            ['XS', 'S', 'M', 'L'].forEach(sz => {
+            // Toggle active state for XS, S, M, L, XL
+            ['XS', 'S', 'M', 'L', 'XL'].forEach(sz => {
                 const btn = document.getElementById('size-btn-' + sz);
                 if (btn) {
                     if(sz === sizeName) {
@@ -773,6 +924,14 @@
             document.body.style.overflow = "auto"; 
         }
 
+        // --- Collection Banner Navigation ---
+        // Sets dynamic title based on the banner clicked and filters outfits
+        function openCollection(categoryName, bannerTitle, button) {
+            if (button) button.blur();
+            showPage('pret');
+            filterCategory(categoryName, bannerTitle);
+        }
+
         // --- 5. Page Switching Logic ---
         function showPage(pageId) {
             const pages = document.querySelectorAll('.page-content');
@@ -786,17 +945,24 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // --- 6. Category Filtering Logic ---
-        function filterCategory(categoryName) {
+        // --- 6. Category Filtering & Title Update Logic ---
+        function filterCategory(categoryName, customTitle) {
             const cards = document.querySelectorAll('.item-card');
             const titleElement = document.getElementById('pret-title');
             
+            // Set heading directly to the Banner Title or Category Name
+            if (customTitle) {
+                titleElement.innerText = customTitle;
+            } else if (categoryName === 'all') {
+                titleElement.innerText = "All Outfits";
+            } else {
+                titleElement.innerText = categoryName.charAt(0).toUpperCase() + categoryName.slice(1) + " Collection";
+            }
+
+            // Filter the item grid cards
             if (categoryName === 'all') {
-                titleElement.innerText = "Ready-To-Wear Pret";
                 cards.forEach(card => card.classList.remove('hidden'));
             } else {
-                titleElement.innerText = "Ready-To-Wear " + categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
-                
                 cards.forEach(card => {
                     if (card.getAttribute('data-category') === categoryName) {
                         card.classList.remove('hidden');
