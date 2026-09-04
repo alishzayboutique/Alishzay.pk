@@ -248,9 +248,7 @@
             <nav class="flex flex-col space-y-[1.35rem] text-xs tracking-[0.2em] uppercase font-medium text-[#704264]">
                 <button onclick="showPage('home'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">Home</button>
                 <button onclick="showPage('pret'); filterCategory('all', 'Ready To Wear'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">Ready To Wear</button>
-                <button onclick="showPage('pret'); filterCategory('lawn', 'Lawn'); toggleSideMenu();" class="text-left pl-4 hover:text-[#4E2A45] transition text-[11px] text-[#704264]/80">- Lawn</button>
-                <button onclick="showPage('pret'); filterCategory('cambric', 'Cambric'); toggleSideMenu();" class="text-left pl-4 hover:text-[#4E2A45] transition text-[11px] text-[#704264]/80">- Cambric</button>
-                <button onclick="showPage('pret'); filterCategory('khaddar', 'Khaddar'); toggleSideMenu();" class="text-left pl-4 hover:text-[#4E2A45] transition text-[11px] text-[#704264]/80">- Khaddar</button>
+                
                 <button onclick="showPage('atelier'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">The Atelier</button>
                 <button onclick="showPage('about'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">About Us</button>
                 <button onclick="showPage('terms'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition pt-2 border-t border-[#E6DFD3]/60 text-[11px]">Terms & Conditions</button>
@@ -334,7 +332,7 @@
                     <div class="collection-banner-content">
                         <span class="collection-banner-label">Effortless Coordinates</span>
                         <h2 class="collection-banner-title">Cord-Set</h2>
-                        <button type="button" class="collection-banner-button" onclick="openCollection('cambric', 'Cord-Set', this)">Shop Cord-Sets</button>
+                        <button type="button" class="collection-banner-button" onclick="openCollection('Cord-Set', 'Cord-Set', this)">Shop Cord-Sets</button>
                     </div>
                 </article>
 
@@ -345,7 +343,7 @@
                     <div class="collection-banner-content">
                         <span class="collection-banner-label">Light &amp; Elegant</span>
                         <h2 class="collection-banner-title">Summer Collection</h2>
-                        <button type="button" class="collection-banner-button" onclick="openCollection('lawn', 'Summer Collection', this)">Shop Summer</button>
+                        <button type="button" class="collection-banner-button" onclick="openCollection('Summer Collection', 'Summer Collection', this)">Shop Summer</button>
                     </div>
                 </article>
 
@@ -356,7 +354,7 @@
                     <div class="collection-banner-content">
                         <span class="collection-banner-label">Warm Luxury</span>
                         <h2 class="collection-banner-title">Winter Collection</h2>
-                        <button type="button" class="collection-banner-button" onclick="openCollection('khaddar', 'Winter Collection', this)">Shop Winter</button>
+                        <button type="button" class="collection-banner-button" onclick="openCollection('Winter Collection', 'Winter Collection', this)">Shop Winter</button>
                     </div>
                 </article>
 
@@ -395,50 +393,7 @@
         </section>
 
         <section class="max-w-7xl mx-auto px-6 py-16">
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-12">
-                
-                <!-- Lawn Card -->
-                <div class="group item-card cursor-pointer" data-category="lawn" onclick="openDressModal('lawn1')">
-                    <div class="overflow-hidden bg-[#704264]/5 mb-4 aspect-[3/4] border border-[#E6DFD3] relative">
-                        <img src="dress1.JPEG" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                            <span class="bg-[#FDFBF7] text-[#4E2A45] text-[10px] tracking-widest uppercase px-4 py-2 shadow-sm rounded-sm">Quick View</span>
-                        </div>
-                    </div>
-                    <div class="text-[10px] text-[#D4AF37] font-semibold tracking-widest uppercase mb-1">Lawn Collection</div>
-                    <h3 class="text-xs tracking-wider uppercase font-medium text-[#4E2A45]">Floral Printed Premium Lawn</h3>
-                    <p class="font-serif text-[#704264] mt-1 text-sm mb-3">PKR 8,500</p>
-                    <button onclick="event.stopPropagation(); openDressModal('lawn1');" class="block w-full border border-[#704264] text-[#704264] text-[10px] tracking-widest uppercase px-4 py-2 hover:bg-[#704264] hover:text-[#FDFBF7] transition duration-300 text-center font-medium">Inquire Size & Buy</button>
-                </div>
-
-                <!-- Cambric Card -->
-                <div class="group item-card cursor-pointer" data-category="cambric" onclick="openDressModal('cambric1')">
-                    <div class="overflow-hidden bg-[#704264]/5 mb-4 aspect-[3/4] border border-[#E6DFD3] relative">
-                        <img src="dress2.JPEG" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                            <span class="bg-[#FDFBF7] text-[#4E2A45] text-[10px] tracking-widest uppercase px-4 py-2 shadow-sm rounded-sm">Quick View</span>
-                        </div>
-                    </div>
-                    <div class="text-[10px] text-[#D4AF37] font-semibold tracking-widest uppercase mb-1">Cambric Collection</div>
-                    <h3 class="text-xs tracking-wider uppercase font-medium text-[#4E2A45]">Signature Sage Cambric Co-ord</h3>
-                    <p class="font-serif text-[#704264] mt-1 text-sm mb-3">PKR 9,200</p>
-                    <div class="block w-full border border-[#704264] text-[#704264] text-[10px] tracking-widest uppercase px-4 py-2 hover:bg-[#704264] hover:text-[#FDFBF7] transition duration-300 text-center font-medium">Inquire Size & Buy</div>
-                </div>
-
-                <!-- Khaddar Card -->
-                <div class="group item-card cursor-pointer" data-category="khaddar" onclick="openDressModal('khaddar1')">
-                    <div class="overflow-hidden bg-[#704264]/5 mb-4 aspect-[3/4] border border-[#E6DFD3] relative">
-                        <img src="dress3.JPEG" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                            <span class="bg-[#FDFBF7] text-[#4E2A45] text-[10px] tracking-widest uppercase px-4 py-2 shadow-sm rounded-sm">Quick View</span>
-                        </div>
-                    </div>
-                    <div class="text-[10px] text-[#D4AF37] font-semibold tracking-widest uppercase mb-1">Khaddar Collection</div>
-                    <h3 class="text-xs tracking-wider uppercase font-medium text-[#4E2A45]">Embroidery Block Loom Khaddar</h3>
-                    <p class="font-serif text-[#704264] mt-1 text-sm mb-3">PKR 9,800</p>
-                    <div class="block w-full border border-[#704264] text-[#704264] text-[10px] tracking-widest uppercase px-4 py-2 hover:bg-[#704264] hover:text-[#FDFBF7] transition duration-300 text-center font-medium">Inquire Size & Buy</div>
-                </div>
-
+            <div id="product-grid" class="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-12">
             </div>
         </section>
     </main>
@@ -731,40 +686,28 @@
 
         // --- 1. Collection Interactive Inventory Data Objects ---
         const clothingDatabase = {
-            lawn1: {
-                title: "Floral Printed Premium Lawn",
-                collection: "Lawn Collection",
-                price: "PKR 8,500",
-                description: "Crafted on premium air-jet lawn, this exquisite silhouette features intricate, whimsical floral motifs screen prints. Perfectly breathable and styled into an elegant long-kameez cut with classic soft-piping updates, ideal for high-end summer statements.",
-                angles: [
-                    "dress1whitefront.jpeg", 
-                    "dress1whiteback.jpeg", 
-                    "dress1whitecollage.jpeg", 
-                ]
-            },
-            lawn2: {
-                title: "Signature Sage Cambric Co-ord",
-                collection: "Cambric Collection",
-                price: "PKR 9,200",
-                description: "An everyday luxury solid staple made on fine, structured mid-season premium cambric fabric. This monochrome co-ord features elegant statement lace inserts on modern flared sleeves and tailored straight matching trousers.",
-                angles: [
-                    "dress2olivefront.jpeg",
-                    "dress2oliveback.jpeg",
-                    "dress2olivecuffs.jpeg",
-                ]
-            },
-            lawn3: {
-                title: "Embroidery Block Loom Khaddar",
-                collection: "Khaddar Collection",
-                price: "PKR 9,800",
-                description: "Woven on cozy premium winter block looms, this heavy-weight luxury khaddar features geometric Resham thread embroidery details running across the neckline and cuffs. Paired nicely with a soft woolen loop shawl profile layout.",
-                angles: [
-                    "dress3bluefront.jpeg",
-                    "dress3blueback.jpeg",
-                    "dress3bluecollage.jpeg",
-                ]
-            }
+            dress1: { title: "Floral Printed Premium Lawn", collection: "New Arrival", price: "PKR 8,500", description: "A graceful printed outfit made for comfortable everyday elegance.", angles: ["dress1.JPEG", "dress1whitefront.jpeg", "dress1whiteback.jpeg", "dress1whitecollage.jpeg"] },
+            dress2: { title: "Signature Sage Co-ord", collection: "Cord-Set", price: "PKR 9,200", description: "A refined matching set with a clean, modern silhouette.", angles: ["dress2.JPEG", "dress2olivefront.jpeg", "dress2oliveback.jpeg", "dress2olivecuffs.jpeg"] },
+            dress3: { title: "Embroidery Block Loom", collection: "Winter Edit", price: "PKR 9,800", description: "A warm and elegant outfit with beautiful embroidered details.", angles: ["dress3.JPEG", "dress3bluefront.jpeg", "dress3blueback.jpeg", "dress3bluecollage.jpeg"] },
+            dress4: { title: "Ruby Long Frock", collection: "Long Frocks", price: "PKR 10,500", description: "A flowing long frock designed for graceful occasions.", angles: ["dress4redfront.jpeg"] },
+            dress5: { title: "Classic Black Essential", collection: "Everyday Edit", price: "PKR 8,900", description: "A timeless black outfit that belongs in every wardrobe.", angles: ["dress5blackfront.jpeg"] }
         };
+
+        function renderProducts() {
+            const grid = document.getElementById('product-grid');
+            if (!grid) return;
+            grid.innerHTML = Object.entries(clothingDatabase).map(([key, item]) => `
+                <div class="group item-card cursor-pointer" data-collection="${item.collection}" onclick="openDressModal('${key}')">
+                    <div class="overflow-hidden bg-[#704264]/5 mb-4 aspect-[3/4] border border-[#E6DFD3] relative">
+                        <img src="${item.angles[0]}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center"><span class="bg-[#FDFBF7] text-[#4E2A45] text-[10px] tracking-widest uppercase px-4 py-2 shadow-sm rounded-sm">Quick View</span></div>
+                    </div>
+                    <div class="text-[10px] text-[#D4AF37] font-semibold tracking-widest uppercase mb-1">${item.collection}</div>
+                    <h3 class="text-xs tracking-wider uppercase font-medium text-[#4E2A45]">${item.title}</h3>
+                    <p class="font-serif text-[#704264] mt-1 text-sm mb-3">${item.price}</p>
+                    <button onclick="event.stopPropagation(); openDressModal('${key}')" class="block w-full border border-[#704264] text-[#704264] text-[10px] tracking-widest uppercase px-4 py-2 hover:bg-[#704264] hover:text-[#FDFBF7] transition duration-300 text-center font-medium">Inquire Size & Buy</button>
+                </div>`).join('');
+        }
 
         // --- 2. Side Menu Drawer Logic ---
         function toggleSideMenu() {
@@ -925,10 +868,10 @@
 
         // --- Collection Banner Navigation ---
         // Sets dynamic title based on the banner clicked and filters outfits
-        function openCollection(categoryName, bannerTitle, button) {
+        function openCollection(collectionName, bannerTitle, button) {
             if (button) button.blur();
             showPage('pret');
-            filterCategory(categoryName, bannerTitle);
+            filterCategory(collectionName, bannerTitle);
         }
 
         // --- 5. Page Switching Logic ---
@@ -946,30 +889,20 @@
 
         // --- 6. Category Filtering & Title Update Logic ---
         function filterCategory(categoryName, customTitle) {
-            const cards = document.querySelectorAll('.item-card');
             const titleElement = document.getElementById('pret-title');
-            
-            // Set heading directly to the Banner Title or Category Name
-            if (customTitle) {
-                titleElement.innerText = customTitle;
-            } else if (categoryName === 'all') {
-                titleElement.innerText = "All Outfits";
-            } else {
-                titleElement.innerText = categoryName.charAt(0).toUpperCase() + categoryName.slice(1) + " Collection";
+            const cards = document.querySelectorAll('.item-card');
+
+            if (titleElement) {
+                titleElement.innerText = customTitle || 'All Outfits';
             }
 
-            // Filter the item grid cards
-            if (categoryName === 'all') {
-                cards.forEach(card => card.classList.remove('hidden'));
-            } else {
-                cards.forEach(card => {
-                    if (card.getAttribute('data-category') === categoryName) {
-                        card.classList.remove('hidden');
-                    } else {
-                        card.classList.add('hidden');
-                    }
-                });
-            }
+            // Show only products belonging to the selected banner collection.
+            cards.forEach(card => {
+                const productCollection = (card.dataset.collection || '').toLowerCase();
+                const selectedCollection = (categoryName || 'all').toLowerCase();
+                const showAll = selectedCollection === 'all';
+                card.classList.toggle('hidden', !showAll && productCollection !== selectedCollection);
+            });
         }
 
         // --- 7. Automatic 5-Second Image Carousel ---
@@ -985,6 +918,7 @@
             slides[currentSlideIndex].classList.remove('opacity-0');
             slides[currentSlideIndex].classList.add('opacity-100');
         }
+        renderProducts();
         setInterval(cycleSlideshow, 5000);
     </script>
 
