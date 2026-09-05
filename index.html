@@ -472,7 +472,8 @@
                     </div>
 
                     <h4 class="text-[11px] tracking-widest uppercase text-[#4E2A45] font-semibold mb-2">Product Specifications</h4>
-                    <p id="modal-description" class="text-xs text-[#704264] leading-relaxed mb-6 font-light"></p>
+                    <div id="modal-description" class="text-xs text-[#704264] leading-relaxed mb-4 font-light"></div>
+                    <div id="modal-specifications" class="mb-6"></div>
                     
                     <div class="bg-[#E6DFD3]/40 p-4 rounded-lg border border-[#D4AF37]/10 mb-6">
                         <h5 class="text-[10px] uppercase tracking-widest text-[#4E2A45] font-semibold mb-1">Tailoring & Sizing Guide</h5>
@@ -685,26 +686,93 @@
         let globalActiveProductKey = "";
 
         // --- 1. Collection Interactive Inventory Data Objects ---
+        // ==================== MANUAL COLLECTION CONTROL ====================
+        // Change the collections array whenever you want to move a product.
+        // Example after the New Arrival period: remove "New Arrival" and keep
+        // the product's permanent section, such as "Summer Collection".
+        // There is NO automatic one-month removal.
         const clothingDatabase = {
-            dress1: { title: "Floral Printed Premium Lawn", collection: "New Arrival", price: "PKR 8,500", description: "A graceful printed outfit made for comfortable everyday elegance.", angles: ["dress1whitefront.jpeg", "dress1whiteback.jpeg", "dress1whitecollage.jpeg"] },
-            dress2: { title: "Signature Sage Co-ord", collection: "Cord-Set", price: "PKR 9,200", description: "A refined matching set with a clean, modern silhouette.", angles: ["dress2olivefront.jpeg", "dress2oliveback.jpeg", "dress2olivecuffs.jpeg"] },
-            dress3: { title: "Embroidery Block Loom", collection: "Winter Edit", price: "PKR 9,800", description: "A warm and elegant outfit with beautiful embroidered details.", angles: ["dress3bluefront.jpeg", "dress3blueback.jpeg", "dress3bluecollage.jpeg"] },
-            dress4: { title: "Ruby Long Frock", collection: "Long Frocks", price: "PKR 10,500", description: "A flowing long frock designed for graceful occasions.", angles: ["dress4redfront.png", "dress4redback.png", "dress4redcollage.png"] },
-            dress5: { title: "Classic Black Essential", collection: "Everyday Edit", price: "PKR 8,900", description: "A timeless black outfit that belongs in every wardrobe.", angles: ["dress5blackfront.jpeg", "dress5blackback.jpeg", "dress5blackcuff.jpeg"] }
+            dress1: {
+                title: "Blue Indigo Printed Floral Abstract Co-ord Set Linen - 01",
+                collections: ["New Arrival", "Summer Collection", "Cord-Set"],
+                oldPrice: "PKR 6,000",
+                price: "PKR 3,999",
+                discount: 33,
+                description: "A stylish cord-set with a coordinated design and a comfortable fit. Its elegant look makes it a perfect choice for casual outings and everyday wear.",
+                specifications: {
+                    shirt: { length: "Write shirt length", colour: "Write colour", fabric: "Linen", design: "Floral abstract print", sleeves: "Write sleeve details" },
+                    trouser: { length: "Write trouser length", colour: "Write colour", fabric: "Linen", design: "Coordinated floral abstract design" }
+                },
+                angles: ["dress1whitefront.jpeg", "dress1whiteback.jpeg", "dress1whitecollage.jpeg"]
+            },
+            dress2: {
+                title: "Olive Striped Embroided 2Piece Cambric - 02",
+                collections: ["New Arrival", "Cord-Set", "Winter Collection"],
+                oldPrice: "PKR 6,500",
+                price: "PKR 4,499",
+                discount: 30,
+                description: "A stylish dress made with comfortable fabric and a beautiful design. Perfect for creating a simple, elegant, and effortless look with striped cutwork design on lower hem and sleeves, and having a ligned embroidery.",
+                specifications: {
+                    shirt: { length: "Write shirt length", colour: "Olive", fabric: "Cambric", design: "Striped embroidered design", sleeves: "Write sleeve details" },
+                    trouser: { length: "Write trouser length", colour: "Olive", fabric: "Cambric", design: "Coordinated striped design" }
+                },
+                angles: ["dress2olivefront.jpeg", "dress2oliveback.jpeg", "dress2olivecuffs.jpeg"]
+            },
+            dress3: {
+                title: "Ice Blue Laced Cutwork and Plated Design 3Piece Lawn - 03",
+                collections: ["New Arrival", "Summer Collection"],
+                oldPrice: "PKR 8,000",
+                price: "PKR 5,999",
+                discount: 25,
+                description: "An elegant outfit featuring beautiful laced cutwork and plates all over the neck, sleeves, lower hemline, trouuser, and a graceful design with light weight and breathable fabric. A perfect choice for celebrations and special occasions.",
+                specifications: {
+                    shirt: { length: "Write shirt length", colour: "Ice Blue", fabric: "Lawn", design: "Laced cutwork and plated design", sleeves: "Write sleeve details" },
+                    trouser: { length: "Write trouser length", colour: "Ice Blue", fabric: "Lawn", design: "Coordinated design" },
+                    dupatta: { length: "Write dupatta length", colour: "Ice Blue", fabric: "Write fabric", design: "Write design details" }
+                },
+                angles: ["dress3bluefront.jpeg", "dress3blueback.jpeg", "dress3bluecollage.jpeg"]
+            },
+            dress4: {
+                title: "Maroon Scallop Embroided Mirror Work 3Piece Cambric - 04",
+                collections: ["New Arrival", "Winter Collection"],
+                oldPrice: "PKR 7,500",
+                price: "PKR 5,499",
+                discount: 27,
+                description: "A lovely winter dress featuring beautiful delicate embroidery with original mirror work and a graceful design. Made with comfortable fabric, it is perfect for a fresh and stylish winter look for any occasion.",
+                specifications: {
+                    shirt: { length: "Write frock length", colour: "Maroon", fabric: "Cambric", design: "Scallop embroidered mirror work", sleeves: "Write sleeve details" },
+                    trouser: { length: "Write trouser length", colour: "Maroon", fabric: "Cambric", design: "Write design details" },
+                    dupatta: { length: "Write dupatta length", colour: "Maroon", fabric: "Write fabric", design: "Write design details" }
+                },
+                angles: ["dress4redfront.jpeg", "dress4redback.jpeg", "dress4redcollage.jpeg"]
+            },
+            dress5: {
+                title: "Monochrome Floral Abstract Co-ord Set Linen - 05",
+                collections: ["New Arrival", "Summer Collection", "Cord-Set"],
+                oldPrice: "PKR 6,000",
+                price: "PKR 3,999",
+                discount: 33,
+                description: "A stylish dress made with comfortable fabric and a beautiful design. Perfect for creating a simple, elegant, and effortless look.",
+                specifications: {
+                    shirt: { length: "Write shirt length", colour: "Black & White", fabric: "Linen", design: "Monochrome floral abstract print", sleeves: "Write sleeve details" },
+                    trouser: { length: "Write trouser length", colour: "Black & White", fabric: "Linen", design: "Coordinated monochrome floral abstract design" }
+                },
+                angles: ["dress5blackfront.jpeg", "dress5blackback.jpeg", "dress5blackcuff.jpeg"]
+            }
         };
 
         function renderProducts() {
             const grid = document.getElementById('product-grid');
             if (!grid) return;
             grid.innerHTML = Object.entries(clothingDatabase).map(([key, item]) => `
-                <div class="group item-card cursor-pointer" data-collection="${item.collection}" onclick="openDressModal('${key}')">
+                <div class="group item-card cursor-pointer" data-collection="${item.collections.join(",")}" onclick="openDressModal('${key}')">
                     <div class="overflow-hidden bg-[#704264]/5 mb-4 aspect-[3/4] border border-[#E6DFD3] relative">
                         <img src="${item.angles[0]}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center"><span class="bg-[#FDFBF7] text-[#4E2A45] text-[10px] tracking-widest uppercase px-4 py-2 shadow-sm rounded-sm">Quick View</span></div>
+                        <div class="absolute top-3 right-3 z-10 bg-[#4E2A45] text-white text-[10px] font-semibold tracking-widest px-3 py-2 rounded-sm">-${item.discount}%</div><div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center"><span class="bg-[#FDFBF7] text-[#4E2A45] text-[10px] tracking-widest uppercase px-4 py-2 shadow-sm rounded-sm">Quick View</span></div>
                     </div>
-                    <div class="text-[10px] text-[#D4AF37] font-semibold tracking-widest uppercase mb-1">${item.collection}</div>
+                    <div class="text-[10px] text-[#D4AF37] font-semibold tracking-widest uppercase mb-1">${item.collections.join(" • ")}</div>
                     <h3 class="text-xs tracking-wider uppercase font-medium text-[#4E2A45]">${item.title}</h3>
-                    <p class="font-serif text-[#704264] mt-1 text-sm mb-3">${item.price}</p>
+                    <p class="font-serif text-[#704264] mt-1 text-sm mb-3"><span class="line-through text-gray-400 mr-2">${item.oldPrice}</span><span class="font-semibold">${item.price}</span></p>
                     <button onclick="event.stopPropagation(); openDressModal('${key}')" class="block w-full border border-[#704264] text-[#704264] text-[10px] tracking-widest uppercase px-4 py-2 hover:bg-[#704264] hover:text-[#FDFBF7] transition duration-300 text-center font-medium">Inquire Size & Buy</button>
                 </div>`).join('');
         }
@@ -757,14 +825,14 @@
 
             for (const key in clothingDatabase) {
                 const item = clothingDatabase[key];
-                if (item.title.toLowerCase().includes(query) || item.collection.toLowerCase().includes(query) || item.description.toLowerCase().includes(query)) {
+                if (item.title.toLowerCase().includes(query) || (item.collections || []).join(' ').toLowerCase().includes(query) || item.description.toLowerCase().includes(query)) {
                     itemsFoundCount++;
                     htmlString += `
                         <div class="flex items-center space-x-4 py-3 cursor-pointer hover:bg-[#E6DFD3]/20 transition px-2 rounded-md" onclick="closeAllOverlays(); openDressModal('${key}')">
                             <img src="${item.angles[0]}" class="w-10 h-12 object-cover rounded-md border border-[#E6DFD3]">
                             <div>
                                 <h5 class="text-xs uppercase font-medium text-[#4E2A45]">${item.title}</h5>
-                                <span class="text-[9px] uppercase tracking-wider text-[#D4AF37]">${item.collection} — ${item.price}</span>
+                                <span class="text-[9px] uppercase tracking-wider text-[#D4AF37]">${(item.collections || []).join(' • ')} — ${item.price}</span>
                             </div>
                         </div>
                     `;
@@ -801,9 +869,36 @@
             });
 
             document.getElementById('modal-title').innerText = product.title;
-            document.getElementById('modal-collection-tag').innerText = product.collection;
+            document.getElementById('modal-collection-tag').innerText = (product.collections || []).join(' • ');
             document.getElementById('modal-price').innerText = product.price;
-            document.getElementById('modal-description').innerText = product.description;
+            // Show the complete description directly under Product Specifications.
+            document.getElementById('modal-description').innerHTML =
+                `<p>${product.description || ''}</p>`;
+
+            // Show the clothing details written inside each product's specifications.
+            const specsBox = document.getElementById('modal-specifications');
+            specsBox.innerHTML = '';
+
+            if (product.specifications) {
+                const sections = Object.entries(product.specifications)
+                    .filter(([section, details]) => details && Object.keys(details).length)
+                    .map(([section, details]) => `
+                        <div class="border-t border-[#E6DFD3] pt-4 mt-4">
+                            <h5 class="text-[10px] uppercase tracking-widest text-[#4E2A45] font-semibold mb-3">
+                                ${section}
+                            </h5>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
+                                ${Object.entries(details).map(([label, value]) => `
+                                    <p class="text-[11px] text-[#704264] leading-relaxed">
+                                        <span class="font-semibold capitalize">${label}:</span> ${value}
+                                    </p>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `).join('');
+
+                specsBox.innerHTML = sections;
+            }
             
             const activeImg = document.getElementById('modal-active-img');
             activeImg.src = product.angles[0];
@@ -898,10 +993,10 @@
 
             // Show only products belonging to the selected banner collection.
             cards.forEach(card => {
-                const productCollection = (card.dataset.collection || '').toLowerCase();
+                const productCollection = (card.dataset.collection || '').toLowerCase().split(',').map(x => x.trim());
                 const selectedCollection = (categoryName || 'all').toLowerCase();
                 const showAll = selectedCollection === 'all';
-                card.classList.toggle('hidden', !showAll && productCollection !== selectedCollection);
+                card.classList.toggle('hidden', !showAll && !productCollection.includes(selectedCollection));
             });
         }
 
