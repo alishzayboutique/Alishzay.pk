@@ -788,7 +788,7 @@
                     <span class="uppercase tracking-widest text-[10px] font-semibold">Subtotal</span>
                     <span id="cart-total" class="font-serif text-lg">PKR 0</span>
                 </div>
-                <button onclick="checkoutCart()" class="w-full bg-[#4E2A45] text-[#FDFBF7] border border-[#D4AF37] py-3.5 text-xs tracking-widest uppercase font-medium hover:bg-[#704264] transition">Proceed to Checkout</button>
+                <button onclick="checkoutCart()" class="w-full bg-[#4E2A45] text-[#FDFBF7] border border-[#D4AF37] py-3.5 text-xs tracking-widest uppercase font-medium hover:bg-[#704264] transition">Proceed to Payment</button>
             </div>
         </div>
     </div>
@@ -1496,7 +1496,22 @@
 
         function checkoutCart() {
             if (!shoppingCart.length) return;
-            alert('Checkout is ready. Connect this button to your preferred payment/checkout system when you are ready to accept online orders.');
+
+            const items = shoppingCart.map(item => {
+                const quantity = item.quantity || 1;
+                const price = item.price || 'Price on request';
+                return `• ${item.title} — Qty: ${quantity} — ${price}`;
+            }).join('%0A');
+
+            const total = shoppingCart.reduce((sum, item) => {
+                const price = Number(String(item.price).replace(/[^0-9]/g, '')) || 0;
+                return sum + (price * (item.quantity || 1));
+            }, 0);
+
+            const message = `Hello ALISHZAY!%0A%0AI would like to purchase the following items:%0A${items}%0A%0ATotal: PKR ${total.toLocaleString()}%0A%0APlease let me know the payment and delivery details. Thank you!`;
+            const whatsappUrl = `https://wa.me/923003994023?text=${message}`;
+
+            window.open(whatsappUrl, '_blank');
         }
 
         function closeDressModal() {
