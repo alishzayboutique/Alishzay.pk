@@ -814,8 +814,7 @@
             <div class="w-full md:w-1/2 p-8 flex flex-col justify-between overflow-y-auto max-h-[45vh] md:max-h-[90vh]">
                 <div>
                     <span id="modal-collection-tag" class="text-[10px] text-[#D4AF37] font-semibold tracking-widest uppercase block mb-1"></span>
-                    <h2 id="modal-title" class="font-serif text-2xl lg:text-3xl font-light text-[#4E2A45] tracking-wide mb-2"></h2>
-                    <p id="modal-price" class="font-serif text-lg text-[#704264] mb-4 border-b border-[#E6DFD3] pb-4"></p>
+                    <h2 id="modal-title" class="font-serif text-2xl lg:text-3xl font-light text-[#4E2A45] tracking-wide mb-4"></h2>
                     
                     <!-- Integrated Size Header Section -->
                     <div class="mb-6">
@@ -835,6 +834,16 @@
                             <button onclick="selectProductSize('L')" id="size-btn-L" class="w-11 h-11 border border-[#704264] text-xs font-medium uppercase tracking-wider transition-all duration-300 rounded-md flex items-center justify-center text-[#704264] bg-transparent hover:border-[#4E2A45]">L</button>
                             <button onclick="selectProductSize('XL')" id="size-btn-XL" class="w-11 h-11 border border-[#704264] text-xs font-medium uppercase tracking-wider transition-all duration-300 rounded-md flex items-center justify-center text-[#704264] bg-transparent hover:border-[#4E2A45]">XL</button>
                         </div>
+
+                        <!-- Product Price -->
+                        <p id="modal-price" class="font-serif text-lg text-[#704264] mt-5 mb-3 border-b border-[#E6DFD3] pb-3"></p>
+
+                        <!-- Purchase Actions: size must be selected first -->
+                        <div class="grid grid-cols-2 gap-3 mt-2" onclick="event.stopPropagation()">
+                            <button onclick="addToCart(globalActiveProductKey)" class="w-full border border-[#704264] text-[#704264] text-[10px] tracking-widest uppercase px-3 py-3 hover:bg-[#704264] hover:text-[#FDFBF7] transition duration-300 text-center font-medium rounded-sm">Add to Cart</button>
+                            <button onclick="buyNow(globalActiveProductKey)" class="w-full bg-[#4E2A45] text-[#FDFBF7] text-[10px] tracking-widest uppercase px-3 py-3 border border-[#D4AF37] hover:bg-[#704264] transition duration-300 text-center font-medium rounded-sm">Buy Now</button>
+                        </div>
+                        <p id="size-selection-hint" class="text-[9px] text-[#704264]/70 mt-2 text-center italic">Select a size before adding to cart or buying now.</p>
 
                         <!-- Single Size Chart: shown only when the Size Chart button is pressed -->
                         <div id="size-chart-dropdown" class="hidden mt-4 border border-[#E6DFD3] bg-white rounded-lg p-3 shadow-inner overflow-x-auto transition-all duration-300">
@@ -1164,10 +1173,7 @@
                     <div class="text-[10px] text-[#D4AF37] font-semibold tracking-widest uppercase mb-1">${item.collections.join(" • ")}</div>
                     <h3 class="text-xs tracking-wider uppercase font-medium text-[#4E2A45]">${item.title}</h3>
                     <p class="font-serif text-[#704264] mt-1 text-sm mb-3"><span class="line-through text-gray-400 mr-2">${item.oldPrice}</span><span class="font-semibold">${item.price}</span></p>
-                    <div class="grid grid-cols-2 gap-2 mt-2" onclick="event.stopPropagation()">
-                            <button onclick="addToCart('${key}')" class="w-full border border-[#704264] text-[#704264] text-[10px] tracking-widest uppercase px-2 py-2 hover:bg-[#704264] hover:text-[#FDFBF7] transition duration-300 text-center font-medium rounded-sm">Add to Cart</button>
-                            <button onclick="buyNow('${key}')" class="w-full bg-[#4E2A45] text-[#FDFBF7] text-[10px] tracking-widest uppercase px-2 py-2 border border-[#D4AF37] hover:bg-[#704264] transition duration-300 text-center font-medium rounded-sm">Buy Now</button>
-                        </div>
+
                 </div>`).join('');
         }
 
@@ -1394,7 +1400,12 @@
             const product = clothingDatabase[productKey];
             if (!product) return;
 
-            const existing = shoppingCart.find(item => item.key === productKey);
+            if (!currentSelectedSize) {
+                showCartToast('Please select a size first');
+                return;
+            }
+
+            const existing = shoppingCart.find(item => item.key === productKey && item.size === currentSelectedSize);
             if (existing) {
                 existing.quantity += 1;
             } else {
@@ -1403,20 +1414,26 @@
                     title: product.title,
                     price: product.price,
                     image: product.angles[0],
+                    size: currentSelectedSize,
                     quantity: 1
                 });
             }
 
             localStorage.setItem('alishzayCart', JSON.stringify(shoppingCart));
             updateCartCount();
-            showCartToast(`${product.title} added to cart`);
+            showCartToast(`${product.title} — Size ${currentSelectedSize} added to cart`);
         }
 
         function buyNow(productKey) {
             const product = clothingDatabase[productKey];
             if (!product) return;
 
-            const dynamicMsg = `Hello ALISHZAY. I am interested in ordering the ${product.title} (${product.price}). Please share the available sizes and ordering details.`;
+            if (!currentSelectedSize) {
+                showCartToast('Please select a size first');
+                return;
+            }
+
+            const dynamicMsg = `Hello ALISHZAY. I would like to order the ${product.title} (${product.price}) in size ${currentSelectedSize}. Please share the payment and delivery details.`;
             const cleanWaUrl = "https://wa.me/923003994023?text=" + encodeURIComponent(dynamicMsg);
             window.open(cleanWaUrl, '_blank');
         }
@@ -1463,6 +1480,7 @@
                     <div class="flex-1">
                         <h3 class="text-[11px] uppercase tracking-wide text-[#4E2A45] font-medium">${item.title}</h3>
                         <p class="font-serif text-sm text-[#704264] mt-1">${item.price}</p>
+                        <p class="text-[10px] uppercase tracking-wider text-[#4E2A45] mt-1">Size: ${item.size || 'Not selected'}</p>
                         <div class="flex items-center gap-3 mt-3">
                             <button onclick="changeCartQuantity(${index}, -1)" class="w-6 h-6 border border-[#D4AF37] text-[#4E2A45]">−</button>
                             <span class="text-xs">${item.quantity}</span>
@@ -1500,7 +1518,7 @@
             const items = shoppingCart.map(item => {
                 const quantity = item.quantity || 1;
                 const price = item.price || 'Price on request';
-                return `• ${item.title} — Qty: ${quantity} — ${price}`;
+                return `• ${item.title} — Size: ${item.size || 'Not specified'} — Qty: ${quantity} — ${price}`;
             }).join('%0A');
 
             const total = shoppingCart.reduce((sum, item) => {
