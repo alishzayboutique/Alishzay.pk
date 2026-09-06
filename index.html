@@ -14,8 +14,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALISHZAY | Luxury Eastern Wear</title>
-    <!-- Supabase client for shared customer reviews -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
@@ -646,7 +644,7 @@
                     <div class="collection-banner-content">
                         <span class="collection-banner-label">The Latest Edit</span>
                         <h2 class="collection-banner-title">New Arrival</h2>
-                        <button type="button" class="collection-banner-button" onclick="openCollection('all', 'New Arrival', this)">Shop New Arrivals</button>
+                        <button type="button" class="collection-banner-button" onclick="openCollection('New Arrival', 'New Arrival', this)">Shop New Arrivals</button>
                     </div>
                 </article>
 
@@ -690,7 +688,7 @@
                     <div class="collection-banner-content">
                         <span class="collection-banner-label">Graceful Silhouettes</span>
                         <h2 class="collection-banner-title">Long Frocks</h2>
-                        <button type="button" class="collection-banner-button" onclick="openCollection('all', 'Long Frocks', this)">Shop Long Frocks</button>
+                        <button type="button" class="collection-banner-button" onclick="openCollection('Long Frocks', 'Long Frocks', this)">Shop Long Frocks</button>
                     </div>
                 </article>
 
@@ -701,7 +699,7 @@
                     <div class="collection-banner-content">
                         <span class="collection-banner-label">Everyday Essentials</span>
                         <h2 class="collection-banner-title">Hijab Essentials</h2>
-                        <button type="button" class="collection-banner-button" onclick="openCollection('all', 'Hijab Essentials', this)">Shop Hijab Essentials</button>
+                        <button type="button" class="collection-banner-button" onclick="openCollection('Hijab Essentials', 'Hijab Essentials', this)">Shop Hijab Essentials</button>
                     </div>
                 </article>
 
@@ -1530,13 +1528,9 @@
 
 
         // --- Customer Reviews ---
-        // Shared reviews are stored in Supabase so customers on different devices can see them.
-        // The publishable key is safe for browser use; database access is controlled by Supabase RLS.
-        const SUPABASE_URL = 'https://lmrgxebcopwruvgthhjw.supabase.co';
-        const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_jyIJ7CZ9Ywb1PWPidS7IPQ_wymc4LUQ';
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
-
-        // Sample/demo review copy for the storefront. Replace these with verified customer reviews before publishing as testimonials.
+        // Reviews are sent to the owner through WhatsApp and added manually.
+        
+// Sample/demo review copy for the storefront. Replace these with verified customer reviews before publishing as testimonials.
         const defaultCustomerReviews = [
             { id: 'default_review_1', name: 'Areeba Siddiqui', date: '2 weeks ago', rating: 5, comment: 'Absolutely loved my outfit! The fabric was beautiful, the stitching was neat, and the finishing looked so elegant. The whole look felt very premium.' },
             { id: 'default_review_2', name: 'Fatima Ahmed', date: '3 weeks ago', rating: 5, comment: 'Such a gorgeous collection. I loved the detailing and the quality was even better than I expected. Everything arrived beautifully finished and ready to wear.' },
@@ -1595,34 +1589,20 @@
         }
 
         async function fetchSharedCustomerReviews() {
-            try {
-                const { data, error } = await supabase
-                    .from('reviews')
-                    .select('id, created_at, name, rating, comment')
-                    .order('created_at', { ascending: false });
-                if (error) throw error;
-                sharedReviewsCache = (data || [])
-                    .filter(review => String(review.name || '').trim().toLowerCase() !== 'shaheer')
-                    .map(review => ({
-                        ...review,
-                        rating: Math.max(1, Math.min(5, Number(review.rating) || 5)),
-                        date: formatReviewDate(review.created_at),
-                        shared: true
-                    }));
-                renderCustomerReviews();
-            } catch (error) {
-                console.error('Unable to load shared reviews:', error);
-                // Keep the storefront usable if Supabase is temporarily unavailable.
-                sharedReviewsCache = [];
-                renderCustomerReviews();
-            }
+            // Reviews are sent to the owner through WhatsApp.
+            // No Supabase connection is needed.
+            sharedReviewsCache = [];
+            renderCustomerReviews();
         }
 
         function getCustomerReviews() {
-            const localReviews = getLocalCustomerReviews();
-            const sharedIds = new Set(sharedReviewsCache.map(r => String(r.id)));
-            const localOnly = localReviews.filter(r => !r.shared && !sharedIds.has(String(r.id)));
-            return [...sharedReviewsCache, ...localOnly, ...defaultCustomerReviews];
+            const saved = getLocalCustomerReviews();
+            const demo = defaultCustomerReviews.map((review, index) => ({
+                ...review,
+                id: review.id || `demo_review_${index + 1}`,
+                shared: true
+            }));
+            return [...demo, ...saved];
         }
 
         function renderCustomerReviews() {
@@ -1716,47 +1696,15 @@
         async function submitCustomerReview(event) {
             event.preventDefault();
             const name = document.getElementById('review-name').value.trim();
-            const rating = Number(document.getElementById('review-rating').value);
+            const rating = document.getElementById('review-rating').value;
             const comment = document.getElementById('review-comment').value.trim();
             if (!name || !comment) return;
 
-            const submitButton = event.target.querySelector('button[type="submit"]');
-            if (submitButton) {
-                submitButton.disabled = true;
-                submitButton.textContent = 'Posting...';
-            }
+            const message = `Hello ALISHZAY! I would like to share a review.%0A%0AName: ${encodeURIComponent(name)}%0ARating: ${encodeURIComponent(rating)}/5%0AReview: ${encodeURIComponent(comment)}`;
+            window.open(`https://wa.me/923003994023?text=${message}`, '_blank');
 
-            try {
-                if (editingReviewId) {
-                    // Existing legacy/local reviews remain editable only in their original browser.
-                    const reviews = getLocalCustomerReviews();
-                    const ownerId = getReviewOwnerId();
-                    const index = reviews.findIndex(r => r.id === editingReviewId && r.ownerId === ownerId && !r.shared);
-                    if (index !== -1) {
-                        reviews[index] = { ...reviews[index], name, rating, comment };
-                        localStorage.setItem('alishzayReviews', JSON.stringify(reviews));
-                    }
-                    editingReviewId = null;
-                } else {
-                    const { error } = await supabase.from('reviews').insert({ name, rating, comment });
-                    if (error) throw error;
-                }
-
-                event.target.reset();
-                const heading = document.querySelector('.review-form h3');
-                if (heading) heading.textContent = 'Share Your Experience';
-                closeReviewForm();
-                await fetchSharedCustomerReviews();
-                document.getElementById('reviews-track')?.scrollTo({ left: 0, behavior: 'smooth' });
-            } catch (error) {
-                console.error('Unable to post review:', error);
-                alert('We could not post your review right now. Please try again in a moment.');
-            } finally {
-                if (submitButton) {
-                    submitButton.disabled = false;
-                    submitButton.textContent = 'Post Review';
-                }
-            }
+            event.target.reset();
+            closeReviewForm();
         }
 
         // Load the shared reviews as soon as the page is ready.
@@ -1794,8 +1742,8 @@
             slides[currentSlideIndex].classList.add('opacity-100');
         }
         // Render reviews first so they are visible even if another storefront initializer has an issue.
-        renderCustomerReviews();
-        renderProducts();
+        try { renderCustomerReviews(); } catch (error) { console.error("Reviews could not be rendered:", error); }
+        try { renderProducts(); } catch (error) { console.error("Products could not be rendered:", error); }
         updateCartCount();
         setInterval(cycleSlideshow, 5000);
     </script>
