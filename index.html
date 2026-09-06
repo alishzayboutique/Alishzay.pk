@@ -569,13 +569,13 @@
             </div>
             <!-- Links Stack -->
             <nav class="flex flex-col space-y-[1.35rem] text-xs tracking-[0.2em] uppercase font-medium text-[#704264]">
-                <button onclick="showPage('home'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">Home</button>
-                <button onclick="showPage('pret'); filterCategory('all', 'Ready To Wear'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">Ready To Wear</button>
+                <button onclick="navigateTo('home'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">Home</button>
+                <button onclick="navigateTo('pret', {collection:'all', title:'Ready To Wear'}); filterCategory('all', 'Ready To Wear'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">Ready To Wear</button>
                 
-                <button onclick="showPage('atelier'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">The Atelier</button>
-                <button onclick="showPage('about'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">About Us</button>
-                <button onclick="showPage('terms'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition pt-2 border-t border-[#E6DFD3]/60 text-[11px]">Terms & Conditions</button>
-                <button onclick="showPage('privacy'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition text-[11px]">Privacy Policy</button>
+                <button onclick="navigateTo('atelier'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">The Atelier</button>
+                <button onclick="navigateTo('about'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">About Us</button>
+                <button onclick="navigateTo('terms'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition pt-2 border-t border-[#E6DFD3]/60 text-[11px]">Terms & Conditions</button>
+                <button onclick="navigateTo('privacy'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition text-[11px]">Privacy Policy</button>
             </nav>
         </div>
         <div class="border-t border-[#E6DFD3] pt-6">
@@ -627,7 +627,7 @@
                     <img src="dress1whitefront.jpeg" class="carousel-img absolute inset-0 w-full h-full object-cover object-center opacity-100">
                     <img src="dress2olivefront.jpeg" class="carousel-img absolute inset-0 w-full h-full object-cover object-center opacity-0">
                     <img src="dress3bluefront.jpeg" class="carousel-img absolute inset-0 w-full h-full object-cover object-center opacity-0">
-                    <img src="dress4redfront.jpeg" class="carousel-img absolute inset-0 w-full h-full object-cover object-center opacity-0">
+                    <img src="dress4redfront.png" class="carousel-img absolute inset-0 w-full h-full object-cover object-center opacity-0">
                     <img src="dress5blackfront.jpeg" class="carousel-img absolute inset-0 w-full h-full object-cover object-center opacity-0">
                 </div>
             </div>
@@ -1085,7 +1085,7 @@
         const clothingDatabase = {
             dress1: {
                 title: "Blue Indigo Printed Floral Abstract Co-ord Set Linen - 01",
-                collections: ["New Arrival", "Summer Collection", "Cord-Set"],
+                collections: ["New Arrival", "Winter Collection", "Cord-Set", "Summer Collection"],
                 oldPrice: "PKR 6,000",
                 price: "PKR 3,999",
                 discount: 33,
@@ -1098,7 +1098,7 @@
             },
             dress2: {
                 title: "Olive Striped Embroided 2Piece Cambric - 02",
-                collections: ["New Arrival", "Cord-Set", "Winter Collection"],
+                collections: ["New Arrival", "Winter Collection"],
                 oldPrice: "PKR 6,500",
                 price: "PKR 4,499",
                 discount: 30,
@@ -1135,11 +1135,11 @@
                     trouser: { length: "Write trouser length", colour: "Maroon", fabric: "Cambric", design: "Write design details" },
                     dupatta: { length: "Write dupatta length", colour: "Maroon", fabric: "Write fabric", design: "Write design details" }
                 },
-                angles: ["dress4redfront.jpeg", "dress4redback.jpeg", "dress4redcollage.jpeg"]
+                angles: ["dress4redfront.png", "dress4redback.png", "dress4redcollage.png"]
             },
             dress5: {
                 title: "Monochrome Floral Abstract Co-ord Set Linen - 05",
-                collections: ["New Arrival", "Summer Collection", "Cord-Set"],
+                collections: ["New Arrival", "Winter Collection", "Cord-Set", "Summer Collection"],
                 oldPrice: "PKR 6,000",
                 price: "PKR 3,999",
                 discount: 33,
@@ -1504,12 +1504,40 @@
             document.body.style.overflow = "auto"; 
         }
 
+        // --- Browser History / SPA Navigation ---
+        // Keeps the mobile/desktop browser Back button working normally.
+        let isRestoringHistory = false;
+
+        function navigateTo(pageId, state = {}, replace = false) {
+            showPage(pageId);
+            const historyState = { page: pageId, ...state };
+            const hash = state.collection
+                ? '#' + encodeURIComponent(state.collection)
+                : '#' + pageId;
+
+            if (replace) {
+                history.replaceState(historyState, '', hash);
+            } else if (!isRestoringHistory) {
+                history.pushState(historyState, '', hash);
+            }
+        }
+
         // --- Collection Banner Navigation ---
-        // Sets dynamic title based on the banner clicked and filters outfits
+        // Sets dynamic title based on the banner clicked, filters outfits,
+        // and creates a browser-history entry for that collection.
         function openCollection(collectionName, bannerTitle, button) {
             if (button) button.blur();
+
             showPage('pret');
             filterCategory(collectionName, bannerTitle);
+
+            if (!isRestoringHistory) {
+                history.pushState(
+                    { page: 'pret', collection: collectionName, title: bannerTitle },
+                    '',
+                    '#' + encodeURIComponent(collectionName)
+                );
+            }
         }
 
         // --- 5. Page Switching Logic ---
@@ -1523,6 +1551,31 @@
             }
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Restore the exact in-site page when the browser Back/Forward button
+        // is used instead of leaving the site immediately.
+        window.addEventListener('popstate', function(event) {
+            const state = event.state;
+            isRestoringHistory = true;
+
+            if (!state || !state.page || state.page === 'home') {
+                showPage('home');
+            } else if (state.page === 'pret') {
+                showPage('pret');
+                filterCategory(state.collection || 'all', state.title || 'Ready To Wear');
+            } else {
+                showPage(state.page);
+            }
+
+            isRestoringHistory = false;
+        });
+
+        // Give the current Home page a history state without adding an extra
+        // entry, so Back from the first in-site page returns to Google (or
+        // whatever page referred the visitor to the website).
+        if (!history.state || !history.state.page) {
+            history.replaceState({ page: 'home' }, '', location.pathname + location.search + '#home');
         }
 
 
@@ -1745,7 +1798,7 @@
         try { renderCustomerReviews(); } catch (error) { console.error("Reviews could not be rendered:", error); }
         try { renderProducts(); } catch (error) { console.error("Products could not be rendered:", error); }
         updateCartCount();
-        setInterval(cycleSlideshow, 5000);
+        setInterval(cycleSlideshow, 2000);
     </script>
 
 </body>
