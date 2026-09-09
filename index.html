@@ -639,7 +639,7 @@
 
                 <!-- New Arrival -->
                 <article class="collection-banner">
-                    <img src="new-arrival-banner.jpg" alt="ALISHZAY New Arrival" class="collection-banner-image" draggable="false">
+                    <img src="newarrivalbanner.jpg" alt="ALISHZAY New Arrival" class="collection-banner-image" draggable="false">
                     <div class="collection-banner-overlay"></div>
                     <div class="collection-banner-content">
                         <span class="collection-banner-label">The Latest Edit</span>
@@ -650,7 +650,7 @@
 
                 <!-- Cord-Set -->
                 <article class="collection-banner">
-                    <img src="cord-set-banner.jpg" alt="ALISHZAY Cord-Set Collection" class="collection-banner-image" draggable="false">
+                    <img src="cordsetbanner.jpg" alt="ALISHZAY Cord-Set Collection" class="collection-banner-image" draggable="false">
                     <div class="collection-banner-overlay"></div>
                     <div class="collection-banner-content">
                         <span class="collection-banner-label">Effortless Coordinates</span>
@@ -661,7 +661,7 @@
 
                 <!-- Summer Collection -->
                 <article class="collection-banner">
-                    <img src="summer-collection-banner.jpg" alt="ALISHZAY Summer Collection" class="collection-banner-image" draggable="false">
+                    <img src="summercollectionbanner.jpg" alt="ALISHZAY Summer Collection" class="collection-banner-image" draggable="false">
                     <div class="collection-banner-overlay"></div>
                     <div class="collection-banner-content">
                         <span class="collection-banner-label">Light &amp; Elegant</span>
@@ -672,7 +672,7 @@
 
                 <!-- Winter Collection -->
                 <article class="collection-banner">
-                    <img src="winter-collection-banner.jpg" alt="ALISHZAY Winter Collection" class="collection-banner-image" draggable="false">
+                    <img src="wintercollectionbanner.jpg" alt="ALISHZAY Winter Collection" class="collection-banner-image" draggable="false">
                     <div class="collection-banner-overlay"></div>
                     <div class="collection-banner-content">
                         <span class="collection-banner-label">Warm Luxury</span>
@@ -683,7 +683,7 @@
 
                 <!-- Long Frocks -->
                 <article class="collection-banner">
-                    <img src="long-frocks-banner.jpg" alt="ALISHZAY Long Frocks Collection" class="collection-banner-image" draggable="false">
+                    <img src="longfrocksbanner.jpg" alt="ALISHZAY Long Frocks Collection" class="collection-banner-image" draggable="false">
                     <div class="collection-banner-overlay"></div>
                     <div class="collection-banner-content">
                         <span class="collection-banner-label">Graceful Silhouettes</span>
@@ -694,7 +694,7 @@
 
                 <!-- Hijab Essentials -->
                 <article class="collection-banner">
-                    <img src="hijab-essentials-banner.jpg" alt="ALISHZAY Hijab Essentials" class="collection-banner-image" draggable="false">
+                    <img src="hijabessentialsbanner.jpg" alt="ALISHZAY Hijab Essentials" class="collection-banner-image" draggable="false">
                     <div class="collection-banner-overlay"></div>
                     <div class="collection-banner-content">
                         <span class="collection-banner-label">Everyday Essentials</span>
@@ -1079,16 +1079,15 @@
         // Example after the New Arrival period: remove "New Arrival" and keep
         // the product's permanent section, such as "Summer Collection".
         // There is NO automatic one-month removal.
-        // Shared size measurements used by every dress. Change these values once here.
-        // Only shirt length can be different for each dress through product.sizeChart.shirtLength.
+        // Shared size chart measurements used by every dress. All measurements are in inches.
         const defaultSizeChart = {
             sizes: ["XS", "S", "M", "L", "XL"],
             measurements: {
                 "Shoulder": ["14\"", "14\"", "14\"", "14.5\"", "15\""],
-                "Chest *": ["18\"", "19\"", "20\"", "22\"", "23\""],
-                "Waist *": ["18\"", "18.5\"", "19\"", "20\"", "22\""],
-                "Hips": ["20\"", "21\"", "21\"", "23\"", "24\""]
-                "Shirt Length": ["40\"", "40\"", "40\"", "42\"", "42\""]
+                "Chest": ["18\"", "19\"", "20\"", "22\"", "23\""],
+                "Waist": ["18\"", "18.5\"", "19\"", "20\"", "22\""],
+                "Hips": ["20\"", "21\"", "21\"", "23\"", "24\""],
+                "Shirt Length": ["40\"", "40\"", "40\"", "42\"", "42\""],
                 "Trouser Length": ["37\"", "38\"", "38\"", "39\"", "39\""]
             }
         };
@@ -1102,8 +1101,8 @@
                 discount: 33,
                 description: "A stylish cord-set with a coordinated design and a comfortable fit. Its elegant look makes it a perfect choice for casual outings and everyday wear.",
                 specifications: {
-                    shirt: { colour: "Write colour", fabric: "Linen" },
-                    trouser: { colour: "Write colour", fabric: "Linen" }
+                    shirt: { length: "Write shirt length", colour: "Write colour", fabric: "Linen", design: "Floral abstract print", sleeves: "Write sleeve details" },
+                    trouser: { length: "Write trouser length", colour: "Write colour", fabric: "Linen", design: "Coordinated floral abstract design" }
                 },
                 angles: ["dress1whitefront.jpeg", "dress1whiteback.jpeg", "dress1whitecollage.jpeg"]
             },
@@ -1115,8 +1114,8 @@
                 discount: 30,
                 description: "A stylish dress made with comfortable fabric and a beautiful design. Perfect for creating a simple, elegant, and effortless look with striped cutwork design on lower hem and sleeves, and having a ligned embroidery.",
                 specifications: {
-                    shirt: { colour: "Olive", fabric: "Cambric" },
-                    trouser: { colour: "Olive", fabric: "Cambric" }
+                    shirt: { length: "Write shirt length", colour: "Olive", fabric: "Cambric", design: "Striped embroidered design", sleeves: "Write sleeve details" },
+                    trouser: { length: "Write trouser length", colour: "Olive", fabric: "Cambric", design: "Coordinated striped design" }
                 },
                 angles: ["dress2olivefront.jpeg", "dress2oliveback.jpeg", "dress2olivecuffs.jpeg"]
             },
@@ -1128,9 +1127,9 @@
                 discount: 25,
                 description: "An elegant outfit featuring beautiful laced cutwork and plates all over the neck, sleeves, lower hemline, trouuser, and a graceful design with light weight and breathable fabric. A perfect choice for celebrations and special occasions.",
                 specifications: {
-                    shirt: { colour: "Ice Blue", fabric: "Lawn" },
-                    trouser: { colour: "Ice Blue", fabric: "Lawn" },
-                    dupatta: { colour: "Ice Blue", fabric: "Write fabric" }
+                    shirt: { length: "Write shirt length", colour: "Ice Blue", fabric: "Lawn", design: "Laced cutwork and plated design", sleeves: "Write sleeve details" },
+                    trouser: { length: "Write trouser length", colour: "Ice Blue", fabric: "Lawn", design: "Coordinated design" },
+                    dupatta: { length: "Write dupatta length", colour: "Ice Blue", fabric: "Write fabric", design: "Write design details" }
                 },
                 angles: ["dress3bluefront.jpeg", "dress3blueback.jpeg", "dress3bluecollage.jpeg"]
             },
@@ -1142,9 +1141,9 @@
                 discount: 27,
                 description: "A lovely winter dress featuring beautiful delicate embroidery with original mirror work and a graceful design. Made with comfortable fabric, it is perfect for a fresh and stylish winter look for any occasion.",
                 specifications: {
-                    shirt: { colour: "Maroon", fabric: "Cambric" },
-                    trouser: { colour: "Maroon", fabric: "Cambric" },
-                    dupatta: { colour: "Maroon", fabric: "Write fabric" }
+                    shirt: { length: "Write frock length", colour: "Maroon", fabric: "Cambric", design: "Scallop embroidered mirror work", sleeves: "Write sleeve details" },
+                    trouser: { length: "Write trouser length", colour: "Maroon", fabric: "Cambric", design: "Write design details" },
+                    dupatta: { length: "Write dupatta length", colour: "Maroon", fabric: "Write fabric", design: "Write design details" }
                 },
                 angles: ["dress4redfront.png", "dress4redback.png", "dress4redcollage.png"]
             },
@@ -1156,12 +1155,11 @@
                 discount: 33,
                 description: "A stylish dress made with comfortable fabric and a beautiful design. Perfect for creating a simple, elegant, and effortless look.",
                 specifications: {
-                    shirt: { colour: "Black & White", fabric: "Linen" },
-                    trouser: { colour: "Black & White", fabric: "Linen" }
+                    shirt: { length: "Write shirt length", colour: "Black & White", fabric: "Linen", design: "Monochrome floral abstract print", sleeves: "Write sleeve details" },
+                    trouser: { length: "Write trouser length", colour: "Black & White", fabric: "Linen", design: "Coordinated monochrome floral abstract design" }
                 },
                 angles: ["dress5blackfront.jpeg", "dress5blackback.jpeg", "dress5blackcuff.jpeg"]
-            }
-        };
+            },
             dress6: {
                 title: "Zinc Blue 2Piece Cambric - 06",
                 collections: ["New Arrival", "Winter Collection"],
@@ -1174,7 +1172,7 @@
                     trouser: { colour: "White", fabric: "Cambric" }
                 },
                 angles: ["dress6zincfront.jpeg", "dress6zincback.jpeg", "dress6zinccollage.jpeg"]
-            }
+            },
         };
 
         function renderProducts() {
@@ -1292,24 +1290,27 @@
             document.getElementById('modal-description').innerHTML =
                 `<p>${product.description || ''}</p>`;
 
-            // Show the clothing details written inside each product's specifications.
+            // Show only colour and fabric in the Quick View details.
+            // Length, design, and sleeve details are intentionally hidden.
             const specsBox = document.getElementById('modal-specifications');
             specsBox.innerHTML = '';
 
             if (product.specifications) {
                 const sections = Object.entries(product.specifications)
-                    .filter(([section, details]) => details && Object.keys(details).length)
+                    .filter(([section, details]) => details && (details.colour || details.fabric))
                     .map(([section, details]) => `
                         <div class="border-t border-[#E6DFD3] pt-4 mt-4">
                             <h5 class="text-[10px] uppercase tracking-widest text-[#4E2A45] font-semibold mb-3">
                                 ${section}
                             </h5>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
-                                ${Object.entries(details).map(([label, value]) => `
-                                    <p class="text-[11px] text-[#704264] leading-relaxed">
-                                        <span class="font-semibold capitalize">${label}:</span> ${value}
-                                    </p>
-                                `).join('')}
+                                ${Object.entries(details)
+                                    .filter(([label]) => label === 'colour' || label === 'fabric')
+                                    .map(([label, value]) => `
+                                        <p class="text-[11px] text-[#704264] leading-relaxed">
+                                            <span class="font-semibold capitalize">${label}:</span> ${value}
+                                        </p>
+                                    `).join('')}
                             </div>
                         </div>
                     `).join('');
@@ -1339,13 +1340,6 @@
             const chart = document.getElementById('size-chart-body');
             const sizes = defaultSizeChart.sizes;
             const measurements = { ...defaultSizeChart.measurements };
-
-            // Each dress may override only its shirt lengths.
-            if (product.sizeChart && product.sizeChart.shirtLength) {
-                measurements["Shirt Length"] = product.sizeChart.shirtLength;
-            } else {
-                measurements["Shirt Length"] = ["44\"", "44\"", "44\"", "44\"", "44\""];
-            }
 
             chart.innerHTML = Object.entries(measurements).map(([label, values]) => `
                 <tr><td class="py-1.5 px-1 text-left font-medium bg-gray-50">${label}</td>
@@ -1692,7 +1686,6 @@
 
         async function fetchSharedCustomerReviews() {
             // Reviews are sent to the owner through WhatsApp.
-            // No Supabase connection is needed.
             sharedReviewsCache = [];
             renderCustomerReviews();
         }
