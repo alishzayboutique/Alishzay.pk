@@ -474,6 +474,57 @@
             }
         }
 
+        /* Quick View price + sale timer */
+        .quick-view-offer {
+            margin-top: 18px;
+            padding: 0;
+            background: transparent;
+            border: 0;
+        }
+        .quick-view-price-row {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            gap: 18px;
+            text-align: left;
+        }
+        .quick-view-free-delivery {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 11px;
+            border: 1px solid #E6DFD3;
+            background: #FDFBF7;
+            font-size: 10px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #4E2A45;
+            white-space: nowrap;
+        }
+        .quick-view-timer {
+            margin: 10px 0 0;
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 7px;
+            padding: 6px 11px;
+            border: 1px solid #E6DFD3;
+            background: #FDFBF7;
+            font-size: 10px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: #704264;
+        }
+        .quick-view-timer-value {
+            font-variant-numeric: tabular-nums;
+            font-weight: 700;
+            letter-spacing: .12em;
+            color: #4E2A45;
+            min-width: 43px;
+        }
     </style>
 </head>
 <body class="bg-[#FDFBF7] text-[#4E2A45] font-sans antialiased">
@@ -574,7 +625,6 @@
                 <button onclick="navigateTo('home'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">Home</button>
                 <button onclick="navigateTo('pret', {collection:'all', title:'Ready To Wear'}); filterCategory('all', 'Ready To Wear'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">Ready To Wear</button>
                 
-                <button onclick="navigateTo('atelier'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">The Atelier</button>
                 <button onclick="navigateTo('about'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition">About Us</button>
                 <button onclick="navigateTo('terms'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition pt-2 border-t border-[#E6DFD3]/60 text-[11px]">Terms & Conditions</button>
                 <button onclick="navigateTo('privacy'); toggleSideMenu();" class="text-left hover:text-[#4E2A45] transition text-[11px]">Privacy Policy</button>
@@ -838,7 +888,17 @@
                         </div>
 
                         <!-- Product Price -->
-                        <p id="modal-price" class="font-serif text-lg text-[#704264] mt-5 mb-3 border-b border-[#E6DFD3] pb-3"></p>
+                        <div class="quick-view-offer" aria-live="polite">
+                            <div class="quick-view-price-row">
+                                <p id="modal-old-price" class="font-serif text-sm text-gray-400 m-0 line-through"></p>
+                                <p id="modal-price" class="font-serif text-lg text-[#704264] m-0"></p>
+                                <span class="quick-view-free-delivery">FREE DELIVERY</span>
+                            </div>
+                            <div class="quick-view-timer">
+                                <span>SALE MIGHT END IN</span>
+                                <span id="quick-view-timer" class="quick-view-timer-value">50:00</span>
+                            </div>
+                        </div>
 
                         <!-- Purchase Actions: size must be selected first -->
                         <div class="grid grid-cols-2 gap-3 mt-2" onclick="event.stopPropagation()">
@@ -883,21 +943,6 @@
     </div>
 
 
-    <!-- ==================== PAGE 3: THE ATELIER ==================== -->
-    <main id="page-atelier" class="page-content hidden">
-        <section class="py-24 px-6 max-w-3xl mx-auto text-center bg-[#E6DFD3]/40 my-12 border border-[#D4AF37]/40 rounded-sm">
-            <span class="text-xs tracking-[0.3em] text-[#D4AF37] uppercase block mb-4 font-semibold">Bespoke Couture</span>
-            <h1 class="font-serif text-4xl font-light text-[#4E2A45] mb-6">The ALISHZAY Atelier</h1>
-            <p class="text-[#704264] text-sm leading-relaxed mb-8 font-light">
-                Do you have a specific fabric or custom design vision in mind? Through our premium Atelier service, you can consult with us to design bespoke custom-sized wear.
-            </p>
-            <a href="https://wa.me/923003994023?text=Hello%20ALISHZAY.%20I%20would%20like%20to%20book%20a%20custom%20design%20consultation%20appointment." target="_blank" class="inline-block bg-[#4E2A45] text-[#FDFBF7] border border-[#D4AF37] px-8 py-3.5 text-xs tracking-widest uppercase hover:bg-[#704264] transition duration-300">
-                Book Design Consultation
-            </a>
-        </section>
-    </main>
-
-
     <!-- ==================== PAGE 4: ABOUT US ==================== -->
     <main id="page-about" class="page-content hidden">
         <section class="max-w-4xl mx-auto px-6 py-20">
@@ -922,7 +967,7 @@
                     <div>
                         <h3 class="font-serif text-2xl text-[#4E2A45] mb-4 font-normal">Our Commitment</h3>
                         <p class="text-xs text-[#704264]">
-                            We specialize in multi-functional Pret collections and fully customizable bespoke Atelier silhouettes. We carefully engineer layouts that celebrate personal expression, providing fashion options that make you look, feel, and move with absolute luxury and unmatched grace.
+                            We specialize in multi-functional Pret collections, carefully curated to celebrate personal expression and provide fashion options that make you look, feel, and move with absolute luxury and unmatched grace.
                         </p>
                     </div>
                 </div>
@@ -949,8 +994,8 @@
                     <p>All prices shown on our website are in **Pakistani Rupees (PKR)**. Shipping costs are calculated separately depending on your location, unless we are running a "Free Delivery" promotion in our top announcement bar. We will guide you through our secure payment options during our WhatsApp chat.</p>
                 </div>
                 <div>
-                    <h3 class="font-serif text-lg text-[#4E2A45] font-normal mb-2">3. Custom & Atelier Orders</h3>
-                    <p>If you are ordering a custom-tailored piece through **The ALISHZAY Atelier**, we will double-check all your measurements with you before we begin. Once our tailors start cutting the fabric and assembling your bespoke outfit, we cannot accept any changes to the size, design, or measurements.</p>
+                    <h3 class="font-serif text-lg text-[#4E2A45] font-normal mb-2">3. Order & Sizing</h3>
+                    <p>Please double-check your selected size before confirming your order. Once your order has been confirmed for processing, changes to size or product selection may not be possible.</p>
                 </div>
                 <div>
                     <h3 class="font-serif text-lg text-[#4E2A45] font-normal mb-2">4. Cancellation Policy</h3>
@@ -1030,7 +1075,6 @@
                 <h5 class="text-xs tracking-widest uppercase mb-4 text-[#D4AF37] font-semibold">Explore</h5>
                 <ul class="space-y-3 text-xs text-[#704264] font-medium flex flex-col items-start">
                     <li><button onclick="showPage('pret'); filterCategory('all', 'Ready-To-Wear Pret');" class="hover:text-[#4E2A45] transition text-left">Ready-To-Wear</button></li>
-                    <li><button onclick="showPage('atelier')" class="hover:text-[#4E2A45] transition text-left">The Atelier Boutique</button></li>
                     <li><button onclick="showPage('about')" class="hover:text-[#4E2A45] transition text-left">About Us</button></li>
                     <li><button onclick="showPage('terms')" class="hover:text-[#4E2A45] transition text-left">Terms & Conditions</button></li>
                     <li><button onclick="showPage('privacy')" class="hover:text-[#4E2A45] transition text-left">Privacy Policy</button></li>
@@ -1071,6 +1115,33 @@
 
     <!-- ==================== JAVASCRIPT LOGIC ==================== -->
     <script>
+        // Quick View sale countdown: starts at 50 minutes on every website load and loops forever.
+        const QUICK_VIEW_TIMER_SECONDS = 50 * 60;
+        let quickViewTimerSeconds = QUICK_VIEW_TIMER_SECONDS;
+        let quickViewTimerInterval = null;
+
+        function renderQuickViewTimer() {
+            const el = document.getElementById('quick-view-timer');
+            if (!el) return;
+            const minutes = Math.floor(quickViewTimerSeconds / 60);
+            const seconds = quickViewTimerSeconds % 60;
+            el.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        function startQuickViewTimer() {
+            quickViewTimerSeconds = QUICK_VIEW_TIMER_SECONDS;
+            renderQuickViewTimer();
+            if (quickViewTimerInterval) clearInterval(quickViewTimerInterval);
+            quickViewTimerInterval = setInterval(() => {
+                quickViewTimerSeconds -= 1;
+                if (quickViewTimerSeconds < 0) quickViewTimerSeconds = QUICK_VIEW_TIMER_SECONDS;
+                renderQuickViewTimer();
+            }, 1000);
+        }
+
+        // A fresh page visit always begins at 50:00.
+        startQuickViewTimer();
+
         // Global variables to monitor context
         let currentSelectedSize = "";
         let globalActiveProductKey = "";
@@ -1287,6 +1358,7 @@
 
             document.getElementById('modal-title').innerText = product.title;
             document.getElementById('modal-collection-tag').innerText = (product.collections || []).join(' • ');
+            document.getElementById('modal-old-price').innerText = product.oldPrice || '';
             document.getElementById('modal-price').innerText = product.price;
             // Show the complete description directly under Product Specifications.
             document.getElementById('modal-description').innerHTML =
