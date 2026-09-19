@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -793,7 +794,52 @@
             }
         }
 
-    </style>
+    
+        /* ALISHZAY mobile quick view redesign: clean fashion-store layout */
+        @media (max-width: 640px) {
+            #dress-modal { align-items: flex-start; padding: 0; background: rgba(0,0,0,.55); }
+            #dress-modal .dress-modal-shell {
+                width: 100%; max-width: 100%; height: 100dvh; max-height: 100dvh;
+                min-height: 0; border-radius: 0; border: 0; display: flex;
+                flex-direction: column; overflow: hidden;
+            }
+            #dress-modal .dress-modal-gallery {
+                width: 100%; flex: 0 0 auto; height: 43dvh; min-height: 260px;
+                padding: 12px 14px 10px; border-right: 0; border-bottom: 1px solid #E6DFD3;
+                display: flex; justify-content: flex-start; gap: 8px; overflow: hidden;
+            }
+            #dress-modal .dress-modal-gallery > div:first-child {
+                width: 100%; height: calc(43dvh - 72px); min-height: 205px;
+                aspect-ratio: auto; flex: 1 1 auto; border-radius: 4px;
+            }
+            #dress-modal .dress-modal-gallery #modal-active-img { object-fit: contain; background: #F4F0E9; }
+            #dress-modal .dress-modal-gallery #modal-thumbs-grid {
+                display: flex; gap: 7px; overflow-x: auto; margin-top: 0; padding-bottom: 2px;
+            }
+            #dress-modal .dress-modal-gallery #modal-thumbs-grid > button {
+                flex: 0 0 54px; width: 54px; height: 64px;
+            }
+            #dress-modal .dress-modal-details {
+                width: 100%; flex: 1 1 auto; height: auto; max-height: none; min-height: 0;
+                overflow-y: auto; padding: 28px 18px 30px; display: block;
+            }
+            #dress-modal .dress-modal-details h2 { font-size: 22px; line-height: 1.2; margin-bottom: 12px; padding-right: 22px; }
+            #dress-modal .dress-modal-details > div:first-child { width: 100%; }
+            #dress-modal .dress-modal-details .mb-6 { margin-bottom: 18px; }
+            #dress-modal .quick-view-price-row { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px; }
+            #dress-modal .quick-view-free-delivery { font-size: 9px; padding: 6px 8px; }
+            #dress-modal .quick-view-timer { font-size: 9px; padding: 7px 9px; margin-top: 8px; }
+            #dress-modal .size-chart-dropdown { margin-top: 12px; padding: 10px; border-radius: 4px; }
+            #dress-modal .size-chart-dropdown table { min-width: 450px; font-size: 10px; }
+            #dress-modal .size-chart-dropdown th, #dress-modal .size-chart-dropdown td { padding: 7px 5px; }
+            #dress-modal .grid.grid-cols-2 { grid-template-columns: 1fr 1fr; gap: 8px; }
+            #dress-modal .dress-modal-details .text-xs { font-size: 11px; line-height: 1.55; }
+            #dress-modal .dress-modal-details .text-\[11px\] { font-size: 10px; }
+            #dress-modal .modal-bottom-content { margin-top: 16px; padding-top: 0; }
+            #dress-modal .size-chart-open-button { margin-top: 0; }
+            #dress-modal > .dress-modal-shell > button { top: 10px; right: 12px; width: 32px; height: 32px; border-radius: 50%; background: rgba(253,251,247,.92); font-size: 22px; }
+        }
+</style>
 </head>
 <body class="bg-[#FDFBF7] text-[#4E2A45] font-sans antialiased">
 
