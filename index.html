@@ -916,7 +916,7 @@
             
             <!-- Left: Logo Emblem & Interactive Menu/Search Controls -->
             <div class="flex items-center sm:space-x-6 z-10">
-                <button onclick="showPage('home')" class="absolute left-1/2 -translate-x-1/2 sm:static sm:translate-x-0 focus:outline-none transition transform hover:scale-105 duration-300 flex items-center" aria-label="ALISHZAY home">
+                <button onclick="navigateTo('home')" class="absolute left-1/2 -translate-x-1/2 sm:static sm:translate-x-0 focus:outline-none transition transform hover:scale-105 duration-300 flex items-center" aria-label="ALISHZAY home">
                     <img src="Logo Headline 2.PNG" alt="ALISHZAY Emblem" class="h-11 sm:h-16 w-auto max-w-[42vw] sm:max-w-none object-contain">
                 </button>
             
@@ -935,7 +935,7 @@
 
             <!-- Center: Brand Logo Text -->
             <div class="text-center absolute left-1/2 transform -translate-x-1/2 hidden sm:block">
-                <button onclick="showPage('home')" class="font-serif text-3xl tracking-[0.25em] uppercase font-semibold text-[#4E2A45] block">ALISHZAY</button>
+                <button onclick="navigateTo('home')" class="font-serif text-3xl tracking-[0.25em] uppercase font-semibold text-[#4E2A45] block">ALISHZAY</button>
                 <span class="block text-[9px] tracking-[0.4em] uppercase text-[#D4AF37] font-medium mt-0.5">Designed To Be Cherished</span>
             </div>
 
@@ -1301,8 +1301,8 @@
 
                             <div class="mt-8">
                                 <label class="flex items-start gap-3 cursor-pointer">
-                                    <input type="checkbox" id="co-agree" class="mt-0.5 w-4 h-4 shrink-0 accent-[#4E2A45]" onchange="document.getElementById('err-agree').classList.remove('show')">
-                                    <span class="text-[11px] leading-relaxed font-light text-[#704264]">I have read and agree to the <a href="#" onclick="event.preventDefault(); navigateTo('terms');" class="underline font-medium text-[#4E2A45]">Terms &amp; Conditions</a> and <a href="#" onclick="event.preventDefault(); navigateTo('privacy');" class="underline font-medium text-[#4E2A45]">Privacy Policy</a>, including that all sales are final except as stated in the Returns policy.</span>
+                                    <input type="checkbox" id="co-agree" required class="mt-0.5 w-4 h-4 shrink-0 accent-[#4E2A45]" onchange="document.getElementById('err-agree').classList.remove('show')">
+                                    <span class="text-[11px] leading-relaxed font-light text-[#704264]">I have read and agree to the <a href="#" onclick="event.preventDefault(); navigateTo('terms');" class="underline font-medium text-[#4E2A45]">Terms &amp; Conditions</a> and <a href="#" onclick="event.preventDefault(); navigateTo('privacy');" class="underline font-medium text-[#4E2A45]">Privacy Policy</a>. I understand that all sales are final except for eligible damaged, defective or wrong items described in the Terms &amp; Conditions.</span>
                                 </label>
                                 <p class="co-error" id="err-agree">Please accept the Terms &amp; Conditions to place your order.</p>
                             </div>
@@ -1452,7 +1452,7 @@
                     
                     <div class="bg-[#E6DFD3]/40 p-4 rounded-lg border border-[#D4AF37]/10 mb-6">
                         <h5 class="text-[10px] uppercase tracking-widest text-[#4E2A45] font-semibold mb-1">Sizing Guide</h5>
-                        <p class="text-[11px] text-[#704264] font-light leading-normal">All sizes are standard ready-to-wear. Please check the size chart before ordering. Custom sizes and alterations are not available.</p>
+                        <p class="text-[11px] text-[#704264] font-light leading-normal">All sizes are standard ready-to-wear. Please check the size chart before ordering.</p>
                     </div>
                 </div>
 
@@ -1652,7 +1652,7 @@
 
                 <div>
                     <h3 class="font-serif text-lg text-[#4E2A45] font-normal mb-2">16. Privacy</h3>
-                    <p>How we collect and use your information, including sharing your delivery details with courier partners, is explained in our <button type="button" onclick="showPage('privacy')" class="underline text-[#4E2A45] font-medium">Privacy Policy</button>.</p>
+                    <p>How we collect and use your information, including sharing your delivery details with courier partners, is explained in our <button type="button" onclick="navigateTo('privacy')" class="underline text-[#4E2A45] font-medium">Privacy Policy</button>.</p>
                 </div>
 
                 <div>
@@ -1662,7 +1662,7 @@
 
                 <div>
                     <h3 class="font-serif text-lg text-[#4E2A45] font-normal mb-2">18. Governing Law and Disputes</h3>
-                    <p>These terms are governed by the laws of Pakistan. Any dispute arising from or relating to these terms or an order will be subject to the jurisdiction of the competent courts in Karachi, Sindh, Pakistan. Before starting any legal action, you agree to contact ALISHZAY first using the details below and give us 14 days to try to resolve the matter.</p>
+                    <p>These terms are governed by the laws of Pakistan, and any dispute is subject to the jurisdiction of the competent courts of Pakistan. Before starting any legal action, you agree to contact us first using the details below and to give us 14 days to try to resolve the matter.</p>
                 </div>
 
                 <div>
@@ -1788,10 +1788,10 @@
             <div>
                 <h5 class="text-xs tracking-widest uppercase mb-3 sm:mb-4 text-[#D4AF37] font-semibold">Explore</h5>
                 <ul class="space-y-1 sm:space-y-3 text-xs text-[#704264] font-medium flex flex-col items-start">
-                    <li><button onclick="showPage('pret'); filterCategory('all', 'Ready-To-Wear Pret');" class="hover:text-[#4E2A45] transition text-left py-2 sm:py-0">Ready-To-Wear</button></li>
-                    <li><button onclick="showPage('about')" class="hover:text-[#4E2A45] transition text-left py-2 sm:py-0">About Us</button></li>
-                    <li><button onclick="showPage('terms')" class="hover:text-[#4E2A45] transition text-left py-2 sm:py-0">Terms & Conditions</button></li>
-                    <li><button onclick="showPage('privacy')" class="hover:text-[#4E2A45] transition text-left py-2 sm:py-0">Privacy Policy</button></li>
+                    <li><button onclick="navigateTo('pret', { collection: 'all', title: 'Ready-To-Wear Pret' });" class="hover:text-[#4E2A45] transition text-left py-2 sm:py-0">Ready-To-Wear</button></li>
+                    <li><button onclick="navigateTo('about')" class="hover:text-[#4E2A45] transition text-left py-2 sm:py-0">About Us</button></li>
+                    <li><button onclick="navigateTo('terms')" class="hover:text-[#4E2A45] transition text-left py-2 sm:py-0">Terms & Conditions</button></li>
+                    <li><button onclick="navigateTo('privacy')" class="hover:text-[#4E2A45] transition text-left py-2 sm:py-0">Privacy Policy</button></li>
                 </ul>
             </div>
 
@@ -2566,7 +2566,15 @@
         let isRestoringHistory = false;
 
         function navigateTo(pageId, state = {}, replace = false) {
+            // Every real in-site navigation gets its own browser-history entry.
+            // This makes Back follow the customer's actual path: New Arrival ->
+            // Terms -> Privacy -> Back to Terms -> Back to New Arrival.
             showPage(pageId);
+
+            if (pageId === 'pret') {
+                filterCategory(state.collection || 'all', state.title || 'Ready-To-Wear Pret');
+            }
+
             const historyState = { page: pageId, ...state };
             const hash = state.collection
                 ? '#' + encodeURIComponent(state.collection)
