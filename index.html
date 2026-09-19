@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -577,269 +576,7 @@
             color: #4E2A45;
             min-width: 43px;
         }
-
-        /* Mobile Quick View: full-screen product browsing with a clear bottom size-chart action */
-        .dress-modal-shell {
-            max-height: 90vh;
-        }
-        .dress-modal-gallery, .dress-modal-details {
-            min-width: 0;
-        }
-        .size-chart-open-button {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            padding: 13px 14px;
-            border: 1px solid #D4AF37;
-            background: #FDFBF7;
-            color: #4E2A45;
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: .12em;
-            text-transform: uppercase;
-            text-align: left;
-        }
-        .size-chart-open-button .size-chart-button-note {
-            font-size: 9px;
-            font-weight: 400;
-            letter-spacing: .03em;
-            text-transform: none;
-            color: #704264;
-            white-space: nowrap;
-        }
-        .size-chart-dropdown.is-open {
-            scroll-margin-top: 18px;
-        }
-        @media (max-width: 640px) {
-            #dress-modal {
-                align-items: flex-start;
-                justify-content: flex-start;
-                padding: 0;
-                background: #FDFBF7;
-            }
-            #dress-modal .dress-modal-shell {
-                width: 100%;
-                max-width: none;
-                min-height: 100dvh;
-                max-height: none;
-                border-radius: 0;
-                border: 0;
-                overflow-y: auto;
-                display: flex;
-                flex-direction: column;
-            }
-            #dress-modal .dress-modal-gallery {
-                width: 100%;
-                flex: 0 0 auto;
-                padding: 14px 14px 18px;
-                border-right: 0;
-                border-bottom: 1px solid #E6DFD3;
-            }
-            #dress-modal .dress-modal-gallery #modal-active-img {
-                object-fit: contain;
-                background: #E6DFD3;
-            }
-            #dress-modal .dress-modal-details {
-                width: 100%;
-                max-height: none;
-                overflow: visible;
-                padding: 24px 18px 36px;
-                display: block;
-            }
-            #dress-modal .dress-modal-details > div:first-child {
-                width: 100%;
-            }
-            #dress-modal .size-chart-open-button {
-                margin-top: 12px;
-                position: relative;
-            }
-            #dress-modal .size-chart-dropdown {
-                margin-top: 10px;
-                max-width: 100%;
-                -webkit-overflow-scrolling: touch;
-            }
-            #dress-modal .size-chart-dropdown table {
-                min-width: 460px;
-            }
-            #dress-modal .quick-view-price-row {
-                gap: 10px;
-            }
-            #dress-modal .quick-view-timer {
-                flex-wrap: wrap;
-                line-height: 1.5;
-            }
-            #dress-modal .modal-bottom-content {
-                margin-top: 12px;
-                padding-top: 0;
-                border-top: 0;
-            }
-        }
-
-        /* Mobile Quick View: split-screen gallery on the left and details on the right */
-        @media (max-width: 640px) {
-            #dress-modal {
-                align-items: stretch;
-                justify-content: stretch;
-                padding: 0;
-                background: #FDFBF7;
-            }
-            #dress-modal .dress-modal-shell {
-                width: 100%;
-                max-width: none;
-                height: 100dvh;
-                min-height: 100dvh;
-                max-height: 100dvh;
-                border-radius: 0;
-                border: 0;
-                overflow: hidden;
-                display: flex;
-                flex-direction: row;
-            }
-            #dress-modal .dress-modal-gallery {
-                width: 50%;
-                flex: 0 0 50%;
-                height: 100%;
-                min-height: 0;
-                padding: 10px 8px;
-                border-right: 1px solid #E6DFD3;
-                border-bottom: 0;
-                overflow-y: auto;
-                justify-content: flex-start;
-                gap: 10px;
-            }
-            #dress-modal .dress-modal-gallery > div:first-child {
-                aspect-ratio: 3 / 4;
-                height: auto;
-                flex: 0 0 auto;
-            }
-            #dress-modal .dress-modal-gallery #modal-active-img {
-                object-fit: contain;
-                background: #E6DFD3;
-            }
-            #dress-modal .dress-modal-gallery #modal-thumbs-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 6px;
-                margin-top: 0;
-            }
-            #dress-modal .dress-modal-details {
-                width: 50%;
-                flex: 0 0 50%;
-                height: 100%;
-                max-height: none;
-                min-height: 0;
-                overflow-y: auto;
-                padding: 38px 10px 20px;
-                display: block;
-            }
-            #dress-modal .dress-modal-details > div:first-child {
-                width: 100%;
-            }
-            #dress-modal .dress-modal-details h2 {
-                font-size: 20px;
-                line-height: 1.15;
-                margin-bottom: 12px;
-            }
-            #dress-modal .quick-view-price-row {
-                gap: 7px;
-                align-items: flex-start;
-                flex-direction: column;
-            }
-            #dress-modal .quick-view-free-delivery {
-                font-size: 8px;
-                padding: 5px 7px;
-            }
-            #dress-modal .quick-view-timer {
-                font-size: 8px;
-                gap: 4px;
-                flex-wrap: wrap;
-                line-height: 1.4;
-                padding: 5px 7px;
-            }
-            #dress-modal .size-chart-open-button {
-                margin-top: 14px;
-                padding: 10px 8px;
-                font-size: 8px;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 4px;
-            }
-            #dress-modal .size-chart-button-note {
-                font-size: 8px;
-                white-space: normal;
-            }
-            #dress-modal .size-chart-dropdown {
-                margin-top: 8px;
-                max-width: 100%;
-                -webkit-overflow-scrolling: touch;
-            }
-            #dress-modal .size-chart-dropdown table {
-                min-width: 460px;
-            }
-            #dress-modal .modal-bottom-content {
-                margin-top: 14px;
-                padding-top: 12px;
-            }
-            #dress-modal .grid.grid-cols-2 {
-                grid-template-columns: 1fr;
-                gap: 7px;
-            }
-            #dress-modal .dress-modal-details .text-xs {
-                font-size: 10px;
-                line-height: 1.45;
-            }
-            #dress-modal .dress-modal-details .text-\[11px\] {
-                font-size: 9px;
-            }
-        }
-
-    
-        /* ALISHZAY mobile quick view redesign: clean fashion-store layout */
-        @media (max-width: 640px) {
-            #dress-modal { align-items: flex-start; padding: 0; background: rgba(0,0,0,.55); }
-            #dress-modal .dress-modal-shell {
-                width: 100%; max-width: 100%; height: 100dvh; max-height: 100dvh;
-                min-height: 0; border-radius: 0; border: 0; display: flex;
-                flex-direction: column; overflow: hidden;
-            }
-            #dress-modal .dress-modal-gallery {
-                width: 100%; flex: 0 0 auto; height: 43dvh; min-height: 260px;
-                padding: 12px 14px 10px; border-right: 0; border-bottom: 1px solid #E6DFD3;
-                display: flex; justify-content: flex-start; gap: 8px; overflow: hidden;
-            }
-            #dress-modal .dress-modal-gallery > div:first-child {
-                width: 100%; height: calc(43dvh - 72px); min-height: 205px;
-                aspect-ratio: auto; flex: 1 1 auto; border-radius: 4px;
-            }
-            #dress-modal .dress-modal-gallery #modal-active-img { object-fit: contain; background: #F4F0E9; }
-            #dress-modal .dress-modal-gallery #modal-thumbs-grid {
-                display: flex; gap: 7px; overflow-x: auto; margin-top: 0; padding-bottom: 2px;
-            }
-            #dress-modal .dress-modal-gallery #modal-thumbs-grid > button {
-                flex: 0 0 54px; width: 54px; height: 64px;
-            }
-            #dress-modal .dress-modal-details {
-                width: 100%; flex: 1 1 auto; height: auto; max-height: none; min-height: 0;
-                overflow-y: auto; padding: 28px 18px 30px; display: block;
-            }
-            #dress-modal .dress-modal-details h2 { font-size: 22px; line-height: 1.2; margin-bottom: 12px; padding-right: 22px; }
-            #dress-modal .dress-modal-details > div:first-child { width: 100%; }
-            #dress-modal .dress-modal-details .mb-6 { margin-bottom: 18px; }
-            #dress-modal .quick-view-price-row { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px; }
-            #dress-modal .quick-view-free-delivery { font-size: 9px; padding: 6px 8px; }
-            #dress-modal .quick-view-timer { font-size: 9px; padding: 7px 9px; margin-top: 8px; }
-            #dress-modal .size-chart-dropdown { margin-top: 12px; padding: 10px; border-radius: 4px; }
-            #dress-modal .size-chart-dropdown table { min-width: 450px; font-size: 10px; }
-            #dress-modal .size-chart-dropdown th, #dress-modal .size-chart-dropdown td { padding: 7px 5px; }
-            #dress-modal .grid.grid-cols-2 { grid-template-columns: 1fr 1fr; gap: 8px; }
-            #dress-modal .dress-modal-details .text-xs { font-size: 11px; line-height: 1.55; }
-            #dress-modal .dress-modal-details .text-\[11px\] { font-size: 10px; }
-            #dress-modal .modal-bottom-content { margin-top: 16px; padding-top: 0; }
-            #dress-modal .size-chart-open-button { margin-top: 0; }
-            #dress-modal > .dress-modal-shell > button { top: 10px; right: 12px; width: 32px; height: 32px; border-radius: 50%; background: rgba(253,251,247,.92); font-size: 22px; }
-        }
-</style>
+    </style>
 </head>
 <body class="bg-[#FDFBF7] text-[#4E2A45] font-sans antialiased">
 
@@ -1161,13 +898,13 @@
 
     <!-- ==================== PRODUCT DETAIL LOOKBOOK MODAL ==================== -->
     <div id="dress-modal" class="fixed inset-0 z-[100] hidden overflow-y-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="dress-modal-shell bg-[#FDFBF7] w-full max-w-4xl rounded-xl overflow-hidden shadow-2xl relative border border-[#D4AF37]/30 max-h-[90vh] flex flex-col md:flex-row">
+        <div class="bg-[#FDFBF7] w-full max-w-4xl rounded-xl overflow-hidden shadow-2xl relative border border-[#D4AF37]/30 max-h-[90vh] flex flex-col md:flex-row">
             
             <!-- Close Button -->
             <button onclick="closeDressModal()" class="absolute top-4 right-4 z-50 text-[#4E2A45] hover:text-[#D4AF37] text-2xl font-light focus:outline-none">&times;</button>
             
             <!-- Left Side: Interactive Multi-Angle Gallery -->
-            <div class="dress-modal-gallery w-full md:w-1/2 bg-[#E6DFD3]/30 p-6 flex flex-col justify-between border-r border-[#E6DFD3]">
+            <div class="w-full md:w-1/2 bg-[#E6DFD3]/30 p-6 flex flex-col justify-between border-r border-[#E6DFD3]">
                 <!-- Large Active Image Display Frame -->
                 <div class="w-full aspect-[3/4] rounded-lg overflow-hidden border border-[#E6DFD3]">
                     <img id="modal-active-img" src="" class="w-full h-full object-cover object-center transition-all duration-500">
@@ -1177,7 +914,7 @@
             </div>
 
             <!-- Right Side: Luxury Details & Interactive Size Pickers -->
-            <div class="dress-modal-details w-full md:w-1/2 p-8 flex flex-col justify-between overflow-y-auto max-h-[45vh] md:max-h-[90vh]">
+            <div class="w-full md:w-1/2 p-8 flex flex-col justify-between overflow-y-auto max-h-[45vh] md:max-h-[90vh]">
                 <div>
                     <span id="modal-collection-tag" class="text-[10px] text-[#D4AF37] font-semibold tracking-widest uppercase block mb-1"></span>
                     <h2 id="modal-title" class="font-serif text-2xl lg:text-3xl font-light text-[#4E2A45] tracking-wide mb-4"></h2>
@@ -1186,7 +923,10 @@
                     <div class="mb-6">
                         <div class="flex justify-between items-center mb-3">
                             <h4 class="text-[11px] tracking-widest uppercase text-[#4E2A45] font-semibold">Size</h4>
-                            <button type="button" class="text-[9px] text-[#704264]/65 uppercase tracking-wider underline" onclick="toggleSizeChartDropdown()">Size Chart</button>
+                            <!-- Size Chart Trigger Dropdown Link Toggle Button -->
+                            <button onclick="toggleSizeChartDropdown()" class="flex items-center gap-1 text-[11px] font-medium text-[#704264] hover:text-[#4E2A45] uppercase tracking-wider transition-all">
+                                <i class="fa-solid fa-ruler-combined text-xs"></i> Size Chart
+                            </button>
                         </div>
                         
                         <!-- Clean Size Box Selectors: XS to XL available -->
@@ -1196,25 +936,6 @@
                             <button onclick="selectProductSize('M')" id="size-btn-M" class="w-11 h-11 border border-[#704264] text-xs font-medium uppercase tracking-wider transition-all duration-300 rounded-md flex items-center justify-center text-[#704264] bg-transparent hover:border-[#4E2A45]">M</button>
                             <button onclick="selectProductSize('L')" id="size-btn-L" class="w-11 h-11 border border-[#704264] text-xs font-medium uppercase tracking-wider transition-all duration-300 rounded-md flex items-center justify-center text-[#704264] bg-transparent hover:border-[#4E2A45]">L</button>
                             <button onclick="selectProductSize('XL')" id="size-btn-XL" class="w-11 h-11 border border-[#704264] text-xs font-medium uppercase tracking-wider transition-all duration-300 rounded-md flex items-center justify-center text-[#704264] bg-transparent hover:border-[#4E2A45]">XL</button>
-                        </div>
-
-                    <!-- Size chart opens from the Size Chart link beside the size heading. -->
-                    <div class="modal-bottom-content">
-                        <div id="size-chart-dropdown" class="hidden mt-3 border border-[#E6DFD3] bg-white rounded-lg p-3 shadow-inner overflow-x-auto transition-all duration-300">
-                            <div class="text-[10px] text-gray-400 mb-2 font-medium flex justify-between gap-3">
-                                <span class="uppercase tracking-wider font-semibold text-[#4E2A45]">Dress Measurements (Inches)</span>
-                                <span class="whitespace-nowrap">+/- 0.5&quot; Variation</span>
-                            </div>
-                            <table class="w-full text-center text-[11px] border-collapse">
-                                <thead>
-                                    <tr class="border-b border-[#E6DFD3] bg-[#E6DFD3]/30 font-semibold text-[#4E2A45]">
-                                        <th class="py-1.5 px-1 text-left">Measurement</th>
-                                        <th class="py-1.5 px-1">XS</th><th class="py-1.5 px-1">S</th><th class="py-1.5 px-1">M</th><th class="py-1.5 px-1">L</th><th class="py-1.5 px-1">XL</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="size-chart-body" class="divide-y divide-gray-100 text-[#704264]"></tbody>
-                            </table>
-                            <p class="text-[9px] text-gray-400 mt-2 italic leading-tight">* Measurements are written flat / one-sided where applicable.</p>
                         </div>
 
                         <!-- Product Price -->
@@ -1237,6 +958,22 @@
                         </div>
                         <p id="size-selection-hint" class="text-[9px] text-[#704264]/70 mt-2 text-center italic">Select a size before adding to cart or buying now.</p>
 
+                        <!-- Single Size Chart: shown only when the Size Chart button is pressed -->
+                        <div id="size-chart-dropdown" class="hidden mt-4 border border-[#E6DFD3] bg-white rounded-lg p-3 shadow-inner overflow-x-auto transition-all duration-300">
+                            <div class="text-[10px] text-gray-400 mb-2 font-medium flex justify-between">
+                                <span class="uppercase tracking-wider font-semibold text-[#4E2A45]">Dress Measurements (Inches)</span>
+                                <span>+/- 0.5" Variation</span>
+                            </div>
+                            <table class="w-full text-center text-[11px] border-collapse">
+                                <thead>
+                                    <tr class="border-b border-[#E6DFD3] bg-[#E6DFD3]/30 font-semibold text-[#4E2A45]">
+                                        <th class="py-1.5 px-1 text-left">Measurement</th>
+                                        <th class="py-1.5 px-1">XS</th><th class="py-1.5 px-1">S</th><th class="py-1.5 px-1">M</th><th class="py-1.5 px-1">L</th><th class="py-1.5 px-1">XL</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="size-chart-body" class="divide-y divide-gray-100 text-[#704264]"></tbody>
+                            </table>
+                            <p class="text-[9px] text-gray-400 mt-2 italic leading-tight">* Measurements are written flat / one-sided where applicable.</p>
                         </div>
                     </div>
 
@@ -1247,8 +984,6 @@
                     <div class="bg-[#E6DFD3]/40 p-4 rounded-lg border border-[#D4AF37]/10 mb-6">
                         <h5 class="text-[10px] uppercase tracking-widest text-[#4E2A45] font-semibold mb-1">Tailoring & Sizing Guide</h5>
                         <p class="text-[11px] text-[#704264] font-light leading-normal">Standard pret sizes run regular. Custom measurements can be coordinated via our WhatsApp line after booking.</p>
-                    </div>
-
                     </div>
                 </div>
 
@@ -1738,18 +1473,10 @@
             `).join('');
         }
 
-        // Toggle the size chart open or closed near the size selector.
-        function toggleSizeChartDropdown(forceOpen = false) {
+        // Toggle visibility state for Size Chart Dropdown 
+        function toggleSizeChartDropdown() {
             const chartDropdown = document.getElementById('size-chart-dropdown');
-            if (!chartDropdown) return;
-            const shouldOpen = forceOpen || chartDropdown.classList.contains('hidden');
-            chartDropdown.classList.toggle('hidden', !shouldOpen);
-            chartDropdown.classList.toggle('is-open', shouldOpen);
-            if (shouldOpen) {
-                requestAnimationFrame(() => {
-                    chartDropdown.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                });
-            }
+            chartDropdown.classList.toggle('hidden');
         }
 
         function selectProductSize(sizeName) {
