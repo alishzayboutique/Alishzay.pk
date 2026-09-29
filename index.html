@@ -861,6 +861,72 @@
             #dress-modal .size-chart-open-button { margin-top: 0; }
             #dress-modal > .dress-modal-shell > button { top: 10px; right: 12px; width: 32px; height: 32px; border-radius: 50%; background: rgba(253,251,247,.92); font-size: 22px; }
         }
+
+        /* Quick View quantity control */
+        .quick-view-quantity-row {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            margin-top: 9px;
+            margin-bottom: 8px;
+        }
+        .quick-view-quantity-label {
+            font-size: 10px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #4E2A45;
+        }
+        .quick-view-quantity-control {
+            display: inline-flex;
+            align-items: center;
+            height: 32px;
+            border: 1px solid #E6DFD3;
+            background: #FDFBF7;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .quick-view-quantity-control button {
+            width: 31px;
+            height: 32px;
+            border: 0;
+            background: transparent;
+            color: #4E2A45;
+            font-size: 16px;
+            line-height: 1;
+            cursor: pointer;
+            transition: background .2s ease, color .2s ease;
+        }
+        .quick-view-quantity-control button:hover {
+            background: #E6DFD3;
+        }
+        .quick-view-quantity-value {
+            min-width: 34px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: #704264;
+            user-select: none;
+        }
+
+        /* Views + Free Delivery: keep both boxes on the same row */
+        .quick-view-views-delivery-row {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            gap: 8px !important;
+            flex-wrap: nowrap !important;
+            width: 100%;
+        }
+        .quick-view-views-delivery-row .quick-view-views {
+            margin-top: 0 !important;
+            flex: 0 0 auto;
+        }
+        .quick-view-views-delivery-row .quick-view-free-delivery {
+            margin-left: 0 !important;
+            flex: 0 0 auto;
+        }
 </style>
 
 <style id="alishzay-price-views-delivery-final">
@@ -885,6 +951,26 @@
   margin-top:0 !important;
 }
 
+
+        /* Final Quick View layout: price first, then views + free delivery on the same row */
+        .quick-view-price-row { margin-bottom: 0 !important; }
+        .quick-view-views-delivery-row {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            gap: 8px !important;
+            flex-wrap: nowrap !important;
+            width: 100% !important;
+            margin-top: 7px !important;
+        }
+        .quick-view-views-delivery-row .quick-view-views {
+            margin-top: 0 !important;
+            flex: 0 0 auto !important;
+        }
+        .quick-view-views-delivery-row .quick-view-free-delivery {
+            margin: 0 !important;
+            flex: 0 0 auto !important;
+        }
 
         /* ==================== CHECKOUT PAGE ==================== */
         .co-title {
@@ -1274,7 +1360,7 @@
                     <img src="dress2olivefront.jpeg" class="carousel-img absolute inset-0 w-full h-full object-cover object-center opacity-100">
                     <img src="dress1whitefront.jpeg" class="carousel-img absolute inset-0 w-full h-full object-cover object-center opacity-0">
                     <img src="dress3bluefront.jpeg" class="carousel-img absolute inset-0 w-full h-full object-cover object-center opacity-0">
-                    <img src="dress4redfront.png" class="carousel-img absolute inset-0 w-full h-full object-cover object-center opacity-0">
+                    <img src="dress4redfront.jpeg" class="carousel-img absolute inset-0 w-full h-full object-cover object-center opacity-0">
                     <img src="dress5blackfront.jpeg" class="carousel-img absolute inset-0 w-full h-full object-cover object-center opacity-0">
                 </div>
             </div>
@@ -1503,11 +1589,21 @@
                             <div class="quick-view-price-row">
                                 <p id="modal-old-price" class="font-serif text-sm text-gray-400 m-0 line-through"></p>
                                 <p id="modal-price" class="font-serif text-lg text-[#704264] m-0"></p>
-                                <span class="quick-view-free-delivery">FREE DELIVERY</span>
                             </div>
-                            <div class="quick-view-views" aria-live="polite">
-                                <span>👁</span>
-                                <span><strong id="modal-views-count">1,000+</strong> views in the last 7 days</span>
+                            <div class="quick-view-quantity-row" onclick="event.stopPropagation()">
+                                <span class="quick-view-quantity-label">Quantity</span>
+                                <div class="quick-view-quantity-control" aria-label="Select quantity">
+                                    <button type="button" onclick="changeQuickViewQuantity(-1)" aria-label="Decrease quantity">−</button>
+                                    <span id="quick-view-quantity" class="quick-view-quantity-value" aria-live="polite">1</span>
+                                    <button type="button" onclick="changeQuickViewQuantity(1)" aria-label="Increase quantity">+</button>
+                                </div>
+                            </div>
+                            <div class="quick-view-views-delivery-row">
+                                <div class="quick-view-views" aria-live="polite">
+                                    <span>👁</span>
+                                    <span><strong id="modal-views-count">1,000+</strong> views in the last 7 days</span>
+                                </div>
+                                <span class="quick-view-free-delivery">FREE DELIVERY</span>
                             </div>
                             <div class="quick-view-timer">
                                 <span>SALE MIGHT END IN</span>
@@ -2078,7 +2174,7 @@
                 </div>
             </div>
         </div>
-        <p class="text-center text-[11px] text-[#D4AF37] font-light tracking-wider">&copy; 2026 ALISHZAY Haute Couture. All Rights Reserved.</p>
+        <p class="text-center text-[11px] text-[#D4AF37] font-light tracking-wider">© ALISHZAY BOUTIQUE. All Rights Reserved.</p>
     </footer>
 
 
@@ -2153,6 +2249,7 @@
 
         // Global variables to monitor context
         let currentSelectedSize = "";
+        let currentSelectedQuantity = 1;
         let globalActiveProductKey = "";
 
         // --- 1. Collection Interactive Inventory Data Objects ---
@@ -2227,7 +2324,7 @@
                     trouser: { length: "Write trouser length", colour: "White and Maroon Mirror Work", fabric: "Cambric", design: "Write design details" },
                     dupatta: { length: "Write dupatta length", colour: "White and Maroon Lacing", fabric: "Khadi Net", design: "Write design details" }
                 },
-                angles: ["dress4redfront.png", "dress4redback.png", "dress4redcollage.png"]
+                angles: ["dress4redfront.jpeg", "dress4redback.jpeg", "dress4redcollage.jpeg"]
             },
             dress5: {
                 title: "Monochrome Floral Abstract Co-ord Set Linen - 05",
@@ -2352,7 +2449,9 @@
             if (!product) return;
 
             globalActiveProductKey = productKey;
-            currentSelectedSize = ""; 
+            currentSelectedSize = "";
+            currentSelectedQuantity = 1;
+            renderQuickViewQuantity();
             
             document.getElementById('size-chart-dropdown').classList.add('hidden');
             renderSizeChart(product);
@@ -2446,6 +2545,16 @@
             }
         }
 
+        function renderQuickViewQuantity() {
+            const quantityEl = document.getElementById('quick-view-quantity');
+            if (quantityEl) quantityEl.textContent = String(currentSelectedQuantity);
+        }
+
+        function changeQuickViewQuantity(change) {
+            currentSelectedQuantity = Math.max(1, currentSelectedQuantity + Number(change || 0));
+            renderQuickViewQuantity();
+        }
+
         function selectProductSize(sizeName) {
             currentSelectedSize = sizeName;
             
@@ -2507,9 +2616,10 @@
                 return;
             }
 
+            const selectedQuantity = Math.max(1, currentSelectedQuantity || 1);
             const existing = shoppingCart.find(item => item.key === productKey && item.size === currentSelectedSize);
             if (existing) {
-                existing.quantity += 1;
+                existing.quantity += selectedQuantity;
             } else {
                 shoppingCart.push({
                     key: productKey,
@@ -2517,13 +2627,13 @@
                     price: product.price,
                     image: product.angles[0],
                     size: currentSelectedSize,
-                    quantity: 1
+                    quantity: selectedQuantity
                 });
             }
 
             localStorage.setItem('alishzayCart', JSON.stringify(shoppingCart));
             updateCartCount();
-            showCartToast(`${product.title} — Size ${currentSelectedSize} added to cart`);
+            showCartToast(`${product.title} — Size ${currentSelectedSize} — Qty ${selectedQuantity} added to cart`);
         }
 
         function buyNow(productKey) {
@@ -2535,9 +2645,20 @@
                 return;
             }
 
-            const dynamicMsg = `Hello ALISHZAY. I would like to order the ${product.title} (${product.price}) in size ${currentSelectedSize}. Please share the payment and delivery details.`;
-            const cleanWaUrl = "https://wa.me/923003994023?text=" + encodeURIComponent(dynamicMsg);
-            window.open(cleanWaUrl, '_blank');
+            // Buy Now goes directly to the same full checkout page, with this
+            // product and the selected size already loaded. It does not add the
+            // item to the customer's existing cart.
+            const item = {
+                key: productKey,
+                title: product.title,
+                price: product.price,
+                image: product.angles[0],
+                size: currentSelectedSize,
+                quantity: Math.max(1, currentSelectedQuantity || 1)
+            };
+            // Close Quick View first so the customer clearly sees the checkout page.
+            closeDressModal();
+            openCheckout('buyNow', [item]);
         }
 
         function updateCartCount() {
@@ -2637,7 +2758,7 @@
         const PAYMENT_METHODS = {
             cod:       { label: "Cash on Delivery" },
             easypaisa: { label: "Easypaisa", accountTitle: "Mehreen Naz Noshad", accountNumber: "03333994033" },
-            jazzcash:  { label: "JazzCash",  accountTitle: "Mehreen Naz Noshad", accountNumber: "03333994033" }
+            jazzcash:  { label: "JazzCash",  accountTitle: "Mehreen Naz Naushad", accountNumber: "03003994023" }
         };
         // ------------------------------------------------------------------------
 
@@ -2705,7 +2826,7 @@
                         </div>
                         <div class="flex-1 min-w-0">
                             <h3 class="co-item-title">${escapeHtml(item.title)}</h3>
-                            <p class="co-item-meta">Size: ${escapeHtml(item.size || 'Not selected')}</p>
+                            <p class="co-item-meta">Size: ${escapeHtml(item.size || 'Not selected')} &nbsp;•&nbsp; Quantity: ${qty}</p>
                         </div>
                         <div class="co-item-price">${formatPKR(lineTotal)}</div>
                     </div>`;
@@ -2734,7 +2855,10 @@
             document.getElementById('checkout-success').classList.add('hidden');
             renderCheckoutSummary();
             updatePaymentNote();
+            // Always close any open Quick View before showing checkout.
+            closeDressModal();
             navigateTo('checkout');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function leaveCheckout() {
